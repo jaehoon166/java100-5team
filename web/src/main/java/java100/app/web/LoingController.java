@@ -28,6 +28,7 @@ public class LoingController {
      @RequestMapping(value="login", method=RequestMethod.GET)
      public String form(Model model) {
          model.addAttribute("menuVisible", false);
+         
          return "auth/loginform";
      }
      
@@ -48,12 +49,14 @@ public class LoingController {
              cookie.setMaxAge(0);
              response.addCookie(cookie);
          }
-         
+         /*
          if(member == null) {
              model.addAttribute("loginUser", null);
              model.addAttribute("menuVisible", false);
              return "auth/loginfail";
          }
+         */
+         
          model.addAttribute("loginUser", member);
          return "redirect:../score/list";
      }
