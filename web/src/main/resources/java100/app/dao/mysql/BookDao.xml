@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.BookDao">
+
+	<resultMap type="book" id="bookMap">
+		<id column="no" property="no" />
+		<result column="bname" property="bname" />
+		<result column="publisher" property="publisher" />
+		<result column="date" property="date" />
+		<result column="price" property="price" />
+		<result column="ex" property="ex" />
+
+		<collection property="files" ofType="uploadFile">
+			<id column="p_no" property="no" />
+			<result column="filename" property="filename" />
+		</collection>
+	</resultMap>
+
+	<select id="findAll" resultMap="bookMap" parameterType="map">
+		select
+		b.no,
+		b.bname,
+		b.publisher,
+		b.date,
+		b.price,
+		b.ex,
+		p.no as p_no,
+		p.filename as filename
+		from
+		ex_bookm as b
+		left join ex_photo as p on b.no=p.bno
+
+		<if test="words != null">
+			<where>
+				<foreach collection="words" item="word">
+					or title like '%${word}%'
+				</foreach>
+			</where>
+		</if>
+
+		order by
+		<choose>
+			<when test="orderColumn == 'price' and align == 'desc'">
+				price desc
+			</when>
+			<when test="orderColumn == 'price' and align == 'asc'">
+				price asc
+			</when>
+
+			<otherwise>
+				no desc
+			</otherwise>
+		</choose>
+
+		limit #{startIndex}, #{size}
+	</select>
+
+	<select id="findByNo" resultMap="bookMap" parameterType="int">
+		select
+		b.no,
+		b.bname,
+		b.publisher,
+		b.date,
+		b.price,
+		b.ex,
+		p.no,
+		p.filename
+		from
+		ex_bookm as b join ex_photo as p on b.no=p.bno
+		where b.no=#{value};
+	</select>
+
+	<select id="countAll" resultType="int">
+		select count(*) from ex_bookm
+	</select>
+
+	<insert id="insert" parameterType="book" useGeneratedKeys="true"
+		keyColumn="no" keyProperty="no">
+		insert into
+		ex_bookm(bname,publisher,date,price,ex)
+		values(#{bname},#{publisher},#{date},#{price},#{ex})
+	</insert>
+
+	<update id="update" parameterType="book">
+		update ex_bookm set
+		bname=#{bname},
+		publisher=#{publisher},
+		date=#{date},
+		price=#{price},
+		ex=#{ex}
+		where no=#{no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from ex_bookm
+		where
+		no=#{value}
+	</delete>
+</mapper>
