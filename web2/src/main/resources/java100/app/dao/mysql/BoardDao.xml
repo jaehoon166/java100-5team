@@ -11,9 +11,13 @@
 		<result column="conts" property="content" />
 		<result column="regdt" property="regDate" />
 		<result column="vwcnt" property="viewCount" />
+<<<<<<< HEAD
         <result column="filename" property="filename" />
         
         
+=======
+
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 		<association property="writer" javaType="member">
 			<id column="m_no" property="no" />
 			<result column="m_name" property="name" />
@@ -39,7 +43,10 @@
 		b.title,
 		b.regdt,
 		b.vwcnt,
+<<<<<<< HEAD
 		b.filename,
+=======
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 		m.no as m_no,
 		m.name as m_name
 		from
@@ -77,7 +84,11 @@
 
 	<select id="findByNo" resultMap="boardMap" parameterType="int">
 		<include refid="select1" />
+<<<<<<< HEAD
 		,conts,filename
+=======
+		,conts
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 		from ex_board
 		where no=#{value}
 	</select>
@@ -89,11 +100,19 @@
 		b.conts,
 		b.regdt,
 		b.vwcnt,
+<<<<<<< HEAD
 		b.filename,
 		m.no as m_no,
 		m.name,
 		m.email,
 		f.no as f_no
+=======
+		m.no as m_no,
+		m.name,
+		m.email,
+		f.no as f_no,
+		f.filename
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 		from
 		ex_board as b
 		join ex_memb as m on
@@ -108,15 +127,24 @@
 
 	<insert id="insert" parameterType="board" useGeneratedKeys="true"
 		keyColumn="no" keyProperty="no">
+<<<<<<< HEAD
 		insert into ex_board(title,conts,regdt,mno,filename)
 		values(#{title},#{content},now(),#{writer.no},#{filename})
+=======
+		insert into ex_board(title,conts,regdt,mno)
+		values(#{title},#{content},now(),#{writer.no})
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 	</insert>
 
 	<update id="update" parameterType="board">
 		update ex_board set
 		title=#{title},
+<<<<<<< HEAD
 		conts=#{content},
 		filename=#{filename}
+=======
+		conts=#{content}
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 		where no=#{no}
 	</update>
 

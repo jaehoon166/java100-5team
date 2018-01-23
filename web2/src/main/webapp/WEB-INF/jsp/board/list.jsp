@@ -27,7 +27,10 @@
 		<table class='table table-hover'>
 			<thead>
 				<tr>
+<<<<<<< HEAD
 				    <th>사진</th>
+=======
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 					<th>번호</th>
 					<th>제목</th>
 					<th>등록일</th>
@@ -41,6 +44,7 @@
 					<c:set var="title"
 						value="${fn:length(board.title) == 0 ? '(제목이없습니다.)' : board.title}" />
 					<tr>
+<<<<<<< HEAD
 					
 					<td>
                        
@@ -48,6 +52,8 @@
                         
                
                     </td>
+=======
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 						<td>${board.no}</td>
 						<%-- <td><a href='${board.no}'>${fn:substring(title, 0, 20)} ${(fn:length(board.title) > 20) ? '...' : ''}</a></td> --%>
 						<td><a href='${board.no}'><span class="d-inline-block text-truncate" style="max-width: 300px;">${title}</span></a></td>

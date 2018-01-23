@@ -31,8 +31,12 @@ public class BoardController {
     ServletContext servletContext;
     @Autowired
     BoardService boardService;
+<<<<<<< HEAD
     
     
+=======
+
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
     @RequestMapping("list")
     public String list(@RequestParam(value = "pn", defaultValue = "1") int pageNo,
             @RequestParam(value = "ps", defaultValue = "5") int pageSize,
@@ -60,7 +64,11 @@ public class BoardController {
         if ((totalCount % pageSize) > 0) {
             lastPageNo++;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
         model.addAttribute("pageNo", pageNo);
         model.addAttribute("lastPageNo", lastPageNo);
         model.addAttribute("list", boardService.list(pageNo, pageSize, options));
@@ -94,6 +102,7 @@ public class BoardController {
                 continue;
 
             String filename = this.writeUploadFile(part, uploadDir);
+<<<<<<< HEAD
             board.setFilename(filename);
             //uploadFiles.add(new UploadFile(filename));
         }
@@ -106,6 +115,18 @@ public class BoardController {
         
         boardService.add(board);
         
+=======
+
+            uploadFiles.add(new UploadFile(filename));
+        }
+
+        board.setFiles(uploadFiles);
+
+        board.setWriter(loginUser);
+
+        boardService.add(board);
+
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
         return "redirect:list";
     }
 
@@ -121,11 +142,18 @@ public class BoardController {
                 continue;
 
             String filename = this.writeUploadFile(part, uploadDir);
+<<<<<<< HEAD
             board.setFilename(filename);
             //uploadFiles.add(new UploadFile(filename));
         }
         System.out.println(board.getFilename());
         
+=======
+
+            uploadFiles.add(new UploadFile(filename));
+        }
+
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
         board.setFiles(uploadFiles);
 
         boardService.update(board);

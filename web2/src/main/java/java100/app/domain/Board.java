@@ -10,14 +10,22 @@ public class Board {
     protected Date regDate;
     protected int viewCount;
     protected Member writer;
+<<<<<<< HEAD
     String filename;
     protected List<UploadFile> files;
     
+=======
+    protected List<UploadFile> files;
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 
     @Override
     public String toString() {
         return "Board [no=" + no + ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", viewCount="
+<<<<<<< HEAD
                 + viewCount + ", writer=" + writer + ", files=" + files + ", filename=" + filename + "]";
+=======
+                + viewCount + "]";
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
     }
 
     public Member getWriter() {
@@ -76,6 +84,7 @@ public class Board {
         this.files = files;
     }
 
+<<<<<<< HEAD
     public String getFilename() {
         return filename;
     }
@@ -85,4 +94,7 @@ public class Board {
     }
 
     
+=======
+
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 }

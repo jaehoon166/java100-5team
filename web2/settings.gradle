@@ -15,4 +15,8 @@ include 'api'
 include 'services:webservice'
 */
 
+<<<<<<< HEAD
 rootProject.name = 'web2'
+=======
+rootProject.name = 'java-project'
+>>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
