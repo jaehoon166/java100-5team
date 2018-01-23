@@ -13,28 +13,12 @@
 	<div class='container'>
 
 		<jsp:include page="../header.jsp" />
-<<<<<<< HEAD
-            
-          
-            
-		<h1>게시물 상세정보</h1>
-
-        
-
-		<c:if test="${not empty board}">
-			<form action='update' method='post' enctype="multipart/form-data">
-                
-            
-                <img src="${contextPath}/download/${board.filename}" width=300 align="right"><br>
-                <p>${board.no}</p>
-=======
 
 		<h1>게시물 상세정보</h1>
 
 		<c:if test="${not empty board}">
 			<form action='update' method='post' enctype="multipart/form-data">
 
->>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 				<div class='form-group row'>
 					<label for='no' class='col-sm-2 col-form-label'>번호</label>
 					<div class='col-sm-10'>
@@ -74,16 +58,10 @@
 				<div class='form-group row'>
 					<label class='col-sm-2 col-form-label'>첨부파일</label>
 					<div class='col-sm-10'>
-<<<<<<< HEAD
-						<c:forEach items="${board.filename}" var="filename">
-                        <a style="width: 50%" href="${contextPath}/download/${board.filename}">${board.filename}</a><br>
-                        </c:forEach>
-=======
 						<c:forEach items="${board.files}" var="file">
 							<a href="${contextPath}/download/${file.filename}">${file.filename}</a>
 							<br>
 						</c:forEach>
->>>>>>> 18e9bd3c43c2b64fe3dd1a31a70bfef9dcdfc888
 					</div>
 				</div>
 

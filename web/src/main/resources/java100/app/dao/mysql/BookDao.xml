@@ -30,7 +30,7 @@
 		p.no as p_no,
 		p.filename as filename
 		from
-		ex_book as b
+		ex_bookm as b
 		left join ex_photo as p on b.no=p.bno
 
 		<if test="words != null">
