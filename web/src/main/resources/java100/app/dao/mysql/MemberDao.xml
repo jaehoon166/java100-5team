@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.MemberDao">
+
+	<resultMap type="member" id="memberMap">
+		<result column="regdt" property="createdDate" />
+		<result column="pwd" property="password" />
+	</resultMap>
+
+	<sql id="select1">
+		select no,name,email,regdt
+	</sql>
+
+	<select id="findAll" resultMap="memberMap" parameterType="map">
+		<include refid="select1" />
+		from ex_memb
+
+		<if test="names != null">
+			<where>
+				<foreach collection="names" item="name">
+					or name like '${name}%'
+				</foreach>
+			</where>
+		</if>
+
+		order by
+		<choose>
+			<when test="orderColumn == 'no' and align == 'desc'">
+				no desc
+			</when>
+			<when test="orderColumn == 'no' and align == 'asc'">
+				no asc
+			</when>
+			<when test="orderColumn == 'name' and align == 'desc'">
+				name desc
+			</when>
+			<otherwise>
+				name asc
+			</otherwise>
+		</choose>
+		limit #{startIndex}, #{size}
+	</select>
+
+	<select id="findByNo" resultMap="memberMap" parameterType="int">
+		<include refid="select1" />
+		from ex_memb
+		where no=#{value}
+	</select>
+	
+	<select id="countAll" resultType="int">
+        select count(*) from ex_memb
+    </select>
+
+	<select id="findByEmailAndPassword" resultMap="memberMap" parameterType="map">
+		<include refid="select1" />
+		from ex_memb
+		where email=#{email} and pwd=password(#{password})
+	</select>
+
+	<insert id="insert" parameterType="member">
+		insert into
+		ex_memb(name,email,pwd,regdt)
+		values(#{name},#{email},password(#{password}),now())
+	</insert>
+	<update id="update" parameterType="member">
+		update ex_memb set
+		name=#{name},email=#{email},pwd=password(#{password}) where no=#{no}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from ex_memb where
+		no=#{value}
+	</delete>
+
+</mapper>
