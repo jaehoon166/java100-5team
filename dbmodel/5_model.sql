@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS faq RESTRICT;
 
 -- 베스트 코디네이터
 CREATE TABLE best_contr (
-	id    INTEGER NOT NULL COMMENT '베스트 코디게시글번호', -- 베스트 코디게시글번호
+	bc_no INTEGER NOT NULL COMMENT '베스트 코디게시글번호', -- 베스트 코디게시글번호
 	co_no INTEGER NOT NULL COMMENT '코디게시글번호', -- 코디게시글번호
 	lank  INTEGER NULL     COMMENT '순위' -- 순위
 )
@@ -46,13 +46,11 @@ COMMENT '베스트 코디네이터';
 ALTER TABLE best_contr
 	ADD CONSTRAINT PK_best_contr -- 베스트 코디네이터 기본키
 		PRIMARY KEY (
-			id -- 베스트 코디게시글번호
+			bc_no -- 베스트 코디게시글번호
 		);
 
--- 베스트 코디네이터 유니크 인덱스
-CREATE UNIQUE INDEX UIX_best_contr
-	ON best_contr ( -- 베스트 코디네이터
-	);
+ALTER TABLE best_contr
+	MODIFY COLUMN bc_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '베스트 코디게시글번호';
 
 -- 데일리 트랜드
 CREATE TABLE trend (
@@ -64,10 +62,9 @@ COMMENT '데일리 트랜드';
 -- 코디게시글
 CREATE TABLE cody_board (
 	co_no    INTEGER      NOT NULL COMMENT '코디게시글번호', -- 코디게시글번호
-	m_no     INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
 	title    VARCHAR(20)  NULL     COMMENT '제목', -- 제목
 	conts    VARCHAR(255) NULL     COMMENT '내용', -- 내용
-	id       VARCHAR(20)  NULL     COMMENT '아이디', -- 아이디
+	m_no     INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
 	datetime DATE         NULL     COMMENT '날짜', -- 날짜
 	co_photo VARCHAR(255) NULL     COMMENT '사진', -- 사진
 	gender   VARCHAR(5)   NULL     COMMENT '성별', -- 성별
@@ -82,6 +79,9 @@ ALTER TABLE cody_board
 		PRIMARY KEY (
 			co_no -- 코디게시글번호
 		);
+
+ALTER TABLE cody_board
+	MODIFY COLUMN co_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '코디게시글번호';
 
 -- 취향분석
 CREATE TABLE analysis (
@@ -98,6 +98,9 @@ ALTER TABLE analysis
 			ana_no -- 분석번호
 		);
 
+ALTER TABLE analysis
+	MODIFY COLUMN ana_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '분석번호';
+
 -- 회원
 CREATE TABLE member (
 	m_no    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
@@ -108,9 +111,11 @@ CREATE TABLE member (
 	pwd     VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
 	age     INTEGER      NOT NULL COMMENT '나이', -- 나이
 	gender  VARCHAR(5)   NOT NULL COMMENT '성별', -- 성별
-	phone   VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
+	phone   VARCHAR(30)  NOT NULL COMMENT '전화번호', -- 전화번호
 	intro   TEXT         NULL     COMMENT '소개글', -- 소개글
-	level   INTEGER      NULL     COMMENT '권한레벨' -- 권한레벨
+	level   INTEGER      NOT NULL COMMENT '권한레벨', -- 권한레벨
+	top     INTEGER      NULL     COMMENT '상의', -- 상의
+	pants   INTEGER      NULL     COMMENT '하의' -- 하의
 )
 COMMENT '회원';
 
@@ -121,17 +126,20 @@ ALTER TABLE member
 			m_no -- 회원번호
 		);
 
--- 회원 유니크 인덱스
+-- 회원 아이디
 CREATE UNIQUE INDEX UIX_member
 	ON member ( -- 회원
 		id ASC -- 아이디
 	);
 
--- 회원 유니크 인덱스2
+-- 회원 이메일
 CREATE UNIQUE INDEX UIX_member2
 	ON member ( -- 회원
 		email ASC -- 이메일
 	);
+
+ALTER TABLE member
+	MODIFY COLUMN m_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
 
 -- 공지사항
 CREATE TABLE notice (
@@ -149,9 +157,12 @@ ALTER TABLE notice
 			n_no -- 공지사항번호
 		);
 
+ALTER TABLE notice
+	MODIFY COLUMN n_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '공지사항번호';
+
 -- 질문게시판
 CREATE TABLE q_board (
-	q-no     INTEGER      NOT NULL COMMENT '질문번호', -- 질문번호
+	q_no     INTEGER      NOT NULL COMMENT '질문번호', -- 질문번호
 	m_no     INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
 	title    VARCHAR(20)  NULL     COMMENT '제목', -- 제목
 	conts    VARCHAR(255) NULL     COMMENT '내용', -- 내용
@@ -165,8 +176,11 @@ COMMENT '질문게시판';
 ALTER TABLE q_board
 	ADD CONSTRAINT PK_q_board -- 질문게시판 기본키
 		PRIMARY KEY (
-			q-no -- 질문번호
+			q_no -- 질문번호
 		);
+
+ALTER TABLE q_board
+	MODIFY COLUMN q_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '질문번호';
 
 -- 친구
 CREATE TABLE friend (
@@ -182,11 +196,6 @@ ALTER TABLE friend
 			m_no,  -- 팔로워
 			m_no2  -- 팔로잉
 		);
-
--- 친구 유니크 인덱스
-CREATE UNIQUE INDEX UIX_friend
-	ON friend ( -- 친구
-	);
 
 -- 코디게시판 댓글
 CREATE TABLE cody_comment (
@@ -205,11 +214,14 @@ ALTER TABLE cody_comment
 			com_no -- 댓글번호
 		);
 
+ALTER TABLE cody_comment
+	MODIFY COLUMN com_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
 -- 베스트 코디게시판 댓글
 CREATE TABLE best_board (
 	bb_no INTEGER      NOT NULL COMMENT '댓글번호', -- 댓글번호
-	id    INTEGER      NOT NULL COMMENT '베스트 코디게시글번호', -- 베스트 코디게시글번호
-	m_no2 INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+	bc_no INTEGER      NOT NULL COMMENT '베스트 코디게시글번호', -- 베스트 코디게시글번호
+	m_no  INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
 	conts VARCHAR(255) NULL     COMMENT '내용', -- 내용
 	date  DATE         NULL     COMMENT '날짜' -- 날짜
 )
@@ -221,6 +233,9 @@ ALTER TABLE best_board
 		PRIMARY KEY (
 			bb_no -- 댓글번호
 		);
+
+ALTER TABLE best_board
+	MODIFY COLUMN bb_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
 
 -- 좋아요
 CREATE TABLE liked (
@@ -239,7 +254,7 @@ ALTER TABLE liked
 
 -- FAQ
 CREATE TABLE faq (
-	q_no    INTEGER      NOT NULL COMMENT 'FAQ번호', -- FAQ번호
+	faq_no  INTEGER      NOT NULL COMMENT 'FAQ번호', -- FAQ번호
 	title   VARCHAR(20)  NULL     COMMENT '제목', -- 제목
 	conts   VARCHAR(255) NULL     COMMENT '내용', -- 내용
 	date    DATE         NULL     COMMENT '날짜', -- 날짜
@@ -252,8 +267,11 @@ COMMENT 'FAQ';
 ALTER TABLE faq
 	ADD CONSTRAINT PK_faq -- FAQ 기본키
 		PRIMARY KEY (
-			q_no -- FAQ번호
+			faq_no -- FAQ번호
 		);
+
+ALTER TABLE faq
+	MODIFY COLUMN faq_no INTEGER NOT NULL AUTO_INCREMENT COMMENT 'FAQ번호';
 
 -- 베스트 코디네이터
 ALTER TABLE best_contr
@@ -339,7 +357,7 @@ ALTER TABLE cody_comment
 ALTER TABLE best_board
 	ADD CONSTRAINT FK_member_TO_best_board -- 회원 -> 베스트 코디게시판 댓글
 		FOREIGN KEY (
-			m_no2 -- 회원번호
+			m_no -- 회원번호
 		)
 		REFERENCES member ( -- 회원
 			m_no -- 회원번호
@@ -349,10 +367,10 @@ ALTER TABLE best_board
 ALTER TABLE best_board
 	ADD CONSTRAINT FK_best_contr_TO_best_board -- 베스트 코디네이터 -> 베스트 코디게시판 댓글
 		FOREIGN KEY (
-			id -- 베스트 코디게시글번호
+			bc_no -- 베스트 코디게시글번호
 		)
 		REFERENCES best_contr ( -- 베스트 코디네이터
-			id -- 베스트 코디게시글번호
+			bc_no -- 베스트 코디게시글번호
 		);
 
 -- 좋아요
