@@ -30,8 +30,10 @@
 				<tr>
 					<th>번호</th>
 					<th>이름</th>
+					<th>나이</th>
 					<th>이메일</th>
-					<th>가입일</th>
+				<th>폰 번호 </th>
+					<th>권한</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,8 +43,10 @@
 					<tr>
 						<td>${member.no}</td>
 						<td><a href='${member.no}'>${member.name}</a></td>
-						<td>${member.email}</td>
-						<td>${member.createdDate}</td>
+						<td>${member.age}</td>
+						  <td>${member.email}</td>
+						<td>${member.phone}</td>
+						<td>${member.level}</td>
 					</tr>
 				</c:forEach>
 

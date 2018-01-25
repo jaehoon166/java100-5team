@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.MemberDao">
+
+	<resultMap type="member" id="memberMap">
+	   <id column="m_no" property="no" />
+		<result column="pwd" property="password" />
+	</resultMap>
+
+	<sql id="select1">
+		select m_no,name,email,id,age,gender,phone,level
+	</sql>
+
+	<select id="findAll" resultMap="memberMap" parameterType="map">
+        <include refid="select1" />
+        from member
+
+        <if test="names != null">
+            <where>
+                <foreach collection="names" item="name">
+                    or name like '${name}%'
+                </foreach>
+            </where>
+        </if>
+
+        order by
+        <choose>
+            <when test="orderColumn == 'no' and align == 'desc'">
+                no desc
+            </when>
+            <when test="orderColumn == 'no' and align == 'asc'">
+                no asc
+            </when>
+            <when test="orderColumn == 'name' and align == 'desc'">
+                name desc
+            </when>
+            <otherwise>
+                name asc
+            </otherwise>
+        </choose>
+        limit #{startIndex}, #{size}
+    </select>
+
+	<select id="findByNo" resultMap="memberMap" parameterType="int">
+		<include refid="select1" />
+		from member
+		where m_no=#{value}
+	</select>
+	
+	<select id="countAll" resultType="int">
+        select count(*) from member
+    </select>
+
+	<select id="findByEmailAndPassword" resultMap="memberMap" parameterType="map">
+		<include refid="select1" />
+		from member
+		where email=#{email} and pwd=password(#{password})
+	</select>
+
+	<insert id="insert" parameterType="member">
+		insert into
+		member(name,email,pwd)
+		values(#{name},#{email},password(#{password}))
+	</insert>
+	<update id="update" parameterType="member">
+		update member set
+		name=#{name},email=#{email},pwd=password(#{password}) where m_no=#{no}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from member where
+		m_no=#{value}
+	</delete>
+
+</mapper>
