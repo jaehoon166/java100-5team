@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<<<<<<< HEAD
 <!-- DAO 객체를 자동으로 생성하려면,
      namespace의 값이 인터페이스 이름과 같아야 한다. -->
 <mapper namespace="java100.app.dao.MemberDao">
@@ -19,42 +18,21 @@
 
 
     <sql id="select1">
-		select m_no,name,email,id,age,gender,phone,intro,m_photo,level
-=======
-<mapper namespace="java100.app.dao.MemberDao">
+        select m_no,name,email,id,age,gender,phone,intro,m_photo,level
+    </sql>
 
-	<resultMap type="member" id="memberMap">
-	   <id column="m_no" property="no" />
-		<result column="pwd" property="password" />
-	</resultMap>
-
-	<sql id="select1">
-		select m_no,name,email,id,age,gender,phone,level
->>>>>>> a5885bab4d7bce10150506e430fc8763e9a6a31c
-	</sql>
-
-	<select id="findAll" resultMap="memberMap" parameterType="map">
+    <select id="findAll" resultMap="memberMap" parameterType="map">
         <include refid="select1" />
-<<<<<<< HEAD
         from member  
 
         <if test="words != null">
             <where>
                 <foreach collection="words" item="word">
                     or name like '${word}%'
-=======
-        from member
-
-        <if test="names != null">
-            <where>
-                <foreach collection="names" item="name">
-                    or name like '${name}%'
->>>>>>> a5885bab4d7bce10150506e430fc8763e9a6a31c
                 </foreach>
             </where>
         </if>
 
-<<<<<<< HEAD
          order by 
         <choose>
             <when test="orderColumn == 'gender' and align == 'desc'">
@@ -62,15 +40,6 @@
             </when>
             <when test="orderColumn == 'gender' and align == 'asc'">
                gender  asc
-=======
-        order by
-        <choose>
-            <when test="orderColumn == 'no' and align == 'desc'">
-                no desc
-            </when>
-            <when test="orderColumn == 'no' and align == 'asc'">
-                no asc
->>>>>>> a5885bab4d7bce10150506e430fc8763e9a6a31c
             </when>
             <when test="orderColumn == 'name' and align == 'desc'">
                 name desc
@@ -79,17 +48,13 @@
                 name asc
             </otherwise>
         </choose>
-<<<<<<< HEAD
         
         <!--  페이징 처리 -->
-=======
->>>>>>> a5885bab4d7bce10150506e430fc8763e9a6a31c
         limit #{startIndex}, #{size}
     </select>
 
-	<select id="findByNo" resultMap="memberMap" parameterType="int">
-<<<<<<< HEAD
-			select 
+    <select id="findByNo" resultMap="memberMap" parameterType="int">
+            select 
         m.m_no,
         m.name,
         m.email,
@@ -105,9 +70,9 @@
         from member as m left outer join cody_board as b
     on m.m_no=b.m_no
     where m.m_no=#{value}
-	</select>
-	
-	 <select id="findByEmailAndPassword" 
+    </select>
+    
+     <select id="findByEmailAndPassword" 
             resultMap="memberMap" parameterType="map">
             <include refid="select1" />
         from member
@@ -125,19 +90,11 @@
        from member 
        where id=#{id}
     </select>
-	
-=======
-		<include refid="select1" />
-		from member
-		where m_no=#{value}
-	</select>
-	
->>>>>>> a5885bab4d7bce10150506e430fc8763e9a6a31c
-	<select id="countAll" resultType="int">
+    
+    <select id="countAll" resultType="int">
         select count(*) from member
     </select>
 
-<<<<<<< HEAD
     <insert id="insert" parameterType="member">
         insert into member(m_photo, name, email, id,
          pwd, age, gender, phone, intro, level)
@@ -181,26 +138,3 @@
    
 </mapper>  
 
-=======
-	<select id="findByEmailAndPassword" resultMap="memberMap" parameterType="map">
-		<include refid="select1" />
-		from member
-		where email=#{email} and pwd=password(#{password})
-	</select>
-
-	<insert id="insert" parameterType="member">
-		insert into
-		member(name,email,pwd)
-		values(#{name},#{email},password(#{password}))
-	</insert>
-	<update id="update" parameterType="member">
-		update member set
-		name=#{name},email=#{email},pwd=password(#{password}) where m_no=#{no}
-	</update>
-	<delete id="delete" parameterType="int">
-		delete from member where
-		m_no=#{value}
-	</delete>
-
-</mapper>
->>>>>>> a5885bab4d7bce10150506e430fc8763e9a6a31c

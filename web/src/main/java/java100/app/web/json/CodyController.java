@@ -141,11 +141,6 @@ public class CodyController {
     public Object add(Cody cody, MultipartFile file[], 
             @ModelAttribute(value = "loginUser") Member loginUser)
             throws Exception {
-   /*     System.out.println("add controller 실행");
-        System.out.println(cody);
-        System.out.println(cody.getCo_no());
-        System.out.println(loginUser.getM_no());
-        */
         
     String uploadDir = servletContext.getRealPath("/download");
         
@@ -239,16 +234,10 @@ public class CodyController {
         liked.getM_no();
         
         
-        codyService.liked(cody);
+        codyService.delete(cody.getCo_no());
         HashMap<String, Object> result = new HashMap<>();
         result.put("like" , liked);
-        try {
             codyService.liked(cody);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("중복으로 누를수 없습니다.");
-            
-        }
 
         return result;
     }
