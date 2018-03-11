@@ -1,8 +1,21 @@
 @charset "UTF-8";
 
 .container {
-	width: 680px;
+	min-height: 100%;
+    padding: 0 18px;
+    background-color: #fff;
+    width: 980px;
+    margin: 14px auto 0;
+    position: relative;
 }
+
+.navbar-tit{
+	margin:0 auto;
+	text-align:center;
+	padding-left:100px;
+}
+
+
 
 footer {
 	text-align: center;
@@ -10,11 +23,8 @@ footer {
 	color: white;
 }
 
-.toolbar {
-	margin: 3px 0px;
-}
 
-.searchbox {
-	display: inline-block;
-	float: right;
-}
+
+
+
+

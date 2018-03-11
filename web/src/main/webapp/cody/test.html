@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="modal fade show" id="loginModal" role="dialog" style="display: block; padding-right: 16px;">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Login</h4>
+<button type="button" class="close" data-dismiss="modal">×</button>
+</div>
+<div class="modal-body">
+
+<form class="form-horizontal" action="/user/loginPost" method="post">
+<div class="form-group">
+<label for="inputEmail3" class="col-xl-sm-2 control-label">Email</label>
+<div class="col-xl-12">
+<input type="text" class="form-control" id="inputEmail3" placeholder="Email" name="user_email" style="width: 100%">
+</div>
+</div>
+<div class="form-group">
+<label for="inputPassword3" class="col-xl-sm-2 control-label">Password</label>
+<div class="col-xl-12">
+<input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="user_password" style="width: 100%">
+</div>
+</div>
+<div class="form-group">
+<div class="col-xl-sm-offset-2 col-xl-sm-10">
+<div class="checkbox">
+<label> <input type="checkbox" name="useCookie">
+    아이디 저장
+</label>
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="col-xl-12ss">
+<button type="submit" class="btn btn-primary p-3" style="background-color: #01D1FE; color: white; border: none; width: 100%; font-size: 20px;">Login</button>
+</div>
+</div>
+</form>
+
+<div class="col-xl-12 row justify-content-center align-items-center my-3">
+<a href="/user/findId">아이디 찾기&nbsp;</a>&nbsp; / &nbsp;&nbsp;
+<a href="/user/findPw">비밀번호 찾기</a>
+</div>
+</body>
+</html>
+
+
+
+<!--  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<script type="text/javascript">
+$(function() {
+
+$(".dropdown-menu a").click(function() {
+
+    $(".nav-link dropdown-toggle:first-child").text($(this).text());
+    $(".nav-link dropdown-toggle:first-child").val($(this).text());
+});
+
+});
+</script>
+<div class='container'>
+<ul class="nav nav-tabs" style="margin-top: 100px">
+
+<li class="nav-item"><a class="nav-link active" href="#">Cody</a>
+</li>
+
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+    data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+    aria-expanded="false">Dropdown</a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">All</a> <a class="dropdown-item"
+            href="#">Follower</a>
+    </div>
+    </li>
+
+
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+    data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+    aria-expanded="false">Gender</a>
+    <div class="dropdown-menu">
+        <form action="list" method="get">
+            <button class="dropdown-item" name="words" value="남자">Guys</button>
+            <button class="dropdown-item" name="words" value="여자">Girls</button>
+
+            <a class="dropdown-item" href="#">Guys + Girls</a>
+        </form>
+    </div>
+    </li>
+
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+    data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+    aria-expanded="false">Top</a>
+    <div class="dropdown-menu">
+        <form action="list" method="get">
+            <button class="dropdown-item" name="tops" value="90">S(90)</button>
+            <button class="dropdown-item" name="tops" value="95">M(95)</button>
+            <button class="dropdown-item" name="tops" value="100">L(100)</button>
+        </form>
+    </div>
+    </li>
+
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+    data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+    aria-expanded="false">Pants</a>
+    <div class="dropdown-menu">
+        <form action="list" method="get">
+            <button class="dropdown-item" name="pants" value="27">27</button>
+            <button class="dropdown-item" name="pants" value="28">28</button>
+            <button class="dropdown-item" name="pants" value="29">29</button>
+            <button class="dropdown-item" name="pants" value="30">30</button>
+            <button class="dropdown-item" name="pants" value="32">32</button>
+            <button class="dropdown-item" name="pants" value="34">34</button>
+        </form>
+
+    </div>
+    </li>
+
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+    data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+    aria-expanded="false">Age</a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">20</a> <a class="dropdown-item"
+            href="#">30</a> <a class="dropdown-item" href="#">40</a> <a
+            class="dropdown-item" href="#">50</a>
+    </div></li>
+
+
+<li class="nav-item">
+<a class="nav-link disabled" href="form.html">게시물 올리기</a>
+</li>
+
+</ul>
+
+
+
+
+
+ <table class='table table-hover'>
+<tr>
+    <td colspan="2"><a style="color: black;" href='result.data.m_no'>
+ <span class="d-inline-block text-truncate" style="max-width: 300px;"><h3>제발</h3></span></a></td>
+ <td style="color: blue; font-style: italic;">   
+ </td>
+</tr>
+<tr>
+    <td colspan="3"><img class="img-rounded"
+        src="/download/s_1519212733240_0.PNG" width=500
+       height="500" align="middle"></td>
+</tr>
+<tr>
+    <td colspan="2">Top Size: 1</td>
+    <td>Pants Size: 1</td>
+    </tr>
+<tr>
+    <td colspan="3"><p>Like+ 0</p></td>
+</tr>
+
+         </tbody>
+     </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

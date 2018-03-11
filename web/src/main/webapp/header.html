@@ -1,0 +1,151 @@
+<nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+      
+      <a class="navbar-brand navbar-tit" href="../cody/list.html">FIT PLANET</a>
+      
+      <!-- 회원 id menubar-------------------------------------------------- -->
+        <div class="menubar">
+<ul>
+ <li><a href="#" id="current">Products</a>
+    <ul>
+     <li><a href="#">Mypage</a></li>
+     <li><a href="#">Galleries</a></li>
+     <li><a href="#">QnA</a></li>
+     <li><a href="#">Logout</a></li>
+    </ul>
+ </li>
+</ul>
+</div>
+<!-- 회원 id menubar-------------------------------------------------- -->
+      
+      <ul class="navbar-nav px-3">
+      </ul>
+
+<!--  헤더에 회원 프로필 사진 -->      
+<span id="userphoto" style='border-radius: 100%; width:35px; height:35px; margin-right: 5px'></span>
+
+<!--  헤더에 회원 닉네임 -->
+<span id="username" style='color: white; margin-right: 5px'></span>
+
+
+<!--  로그인 버튼 클릭시 모달창 띄우기 -->            
+  <a data-target="#loginmodal" data-toggle="modal"
+            class='btn btn-light btn-sm in' style="vertical-align: middle;" >LOGIN</a>
+
+<!--   로그 아웃 버튼 -->            
+<button id="logoutBtn" type="button"  class='btn btn-light btn-sm out'>Log Out</button>
+</nav>
+
+
+<!--  로그인 모달  -->
+<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" 
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">FITPLANET LOGIN</h5>
+        <button type="button" class="close" data-dismiss="modal"
+        aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+</button>
+</div>
+            
+<form action="login" method='post'>
+<div class="modal-body">
+
+ <div class='form-group row'>
+ <label for='email' class='col-sm-2 col-form-label'>이메일</label>
+ <div class='col-sm-10'>
+     <input class='form-control' id='lemail' type='email'
+         name='email'>
+    </div>
+</div>
+
+<div class='form-group row'>
+    <label for='pwd' class='col-sm-2 col-form-label'>암호</label>
+    <div class='col-sm-10'>
+        <input class='form-control' id='lpwd' type='password'
+         name='pwd'>
+    </div>
+</div>
+
+<div class='form-group row'>
+    <div class='col-sm-2'></div>
+    <div class='col-sm-10'>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="lsaveEmail"
+                name="saveEmail"> <label class="form-check-label"
+                for="saveEmail">이메일 저장</label>
+        </div>
+    </div>
+</div>
+
+
+<div class="warning"></div>
+<div class="modal-footer">
+    <button class='btn btn-sm' style='background-color: aqua' id="loginBtn">LOGIN</button>
+<button  class='btn btn-primary btn-sm' id='joinBtn'  >Join us</button>
+<button class='btn btn-sm' style='background-color: #FF0080'
+data-dismiss="modal">Close</button>
+                </div>
+                
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var profile = $('#userphoto'),
+    login = $('#loginBtn'),
+    join = $('#joinBtn'),
+    logout = $('#logoutBtn'),
+    email = $('#lemail'),
+    pwd = $('#lpwd'),
+    saveEmail = $('#lsaveEmail');
+
+$.getJSON('../json/auth/loginUser', function(result) {
+    if (result.status == 'fail') {
+        $('.out').css('display', 'none'); 
+    }  else {
+    $('.in').css('display', 'none'); 
+    $('#username').html(result.member.id);
+    var filenameheader = result.member.m_photo;
+    
+    if (filenameheader == null ) {
+        profile.html('<img id="imag2" style="border-radius:100%" width="35px" height="35px" src="../images/profile.gif">');
+    } else {
+    profile.html( '<img id="imag2" style="border-radius:100%" width="35px" height="35px" src="/download/'+ filenameheader  + '">');
+    }
+    
+    }
+});
+
+
+login.click(function() {
+    
+    event.stopPropagation();
+    event.preventDefault();
+    $.post('../json/auth/login', {
+        email: email.val(),
+        pwd: pwd.val(),
+        saveEmail: saveEmail.is(':checked')
+    }, function(result) {
+        if (result.status == "success") {
+            location.href = "list.html"
+            console.log(result.member.id);
+        } else  {
+            $(".warning").text('이메일이 또는 비밀번호가 틀립니다').css('color', 'red');
+        }
+    }, 'json');
+    
+});
+
+$('#logoutBtn').click(() => {
+    $.getJSON('../json/auth/logout', (result) => {
+        location.href = 'list.html';
+    });
+})
+
+
+
+</script>

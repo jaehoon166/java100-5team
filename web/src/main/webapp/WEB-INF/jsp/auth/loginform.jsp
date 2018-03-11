@@ -23,10 +23,10 @@
 				</div>
 			</div>
 			<div class='form-group row'>
-				<label for='password' class='col-sm-2 col-form-label'>암호</label>
+				<label for='pwd' class='col-sm-2 col-form-label'>암호</label>
 				<div class='col-sm-10'>
-					<input class='form-control' id='password' type='password'
-						name='password'>
+					<input class='form-control' id='pwd' type='password'
+						name='pwd'>
 				</div>
 			</div>
 

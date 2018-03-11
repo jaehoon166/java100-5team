@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/* list 시작 */
+#main_table {
+    width: 1000px;
+}
+
+#main_table:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.main_writer {
+    width: 150px;
+    text-align: right;
+}
+
+/* 메인레프트라이트영역나눈거 */
+#main_left{width:80%; float:left;}
+#main_right{width:20%; float:left;}
+#main_table:after{content:"";display:block;clear:both;}
+
+.navbar-tit{
+	margin:0 auto;
+	text-align:center;
+	padding-left:100px;
+}
+
+#firend {
+    height: 420px;
+    max-height: 420px;
+    margin-bottom: 20px;
+}
+
+#daily {
+    height: 560px;
+    max-height: 560px;
+}
+
+.daily_tit h4, .daily_tit p {
+    display: inline-block;
+}
+
+#daily ul {
+    padding: 0;
+}
+
+#daily ul li {
+    width: 143px;
+    height: 143px;
+    margin: 5px;
+    display: inline-block;
+}
+
+/* list 끝 */
+footer {
+    text-align: center;
+    color: #000;
+}
+
+.toolbar {
+    margin: 3px 0px;
+}
+
+.searchbox {
+    display: inline-block;
+    float: right;
+}
+
+
+figure {
+    display: block;
+    margin: 0;
+}
+
+.tag {
+    color: gray;
+    font-size: 15px;
+}
+
+.images {
+    position: relative;
+}
+
+.images.text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    text-align: center;
+    line-height: 143px;
+}
+
+.tint {
+    position: relative;
+    float: left;
+    cursor: pointer;
+    width: 143px;
+    height: 143px;
+}
+
+.tint:before {
+    background: rgba(255, 0, 0, 0.5);
+    content: attr(lang);
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.tint:hover:before {
+    background: none;
+}
+
+.t:before {
+    background: rgba(0, 0, 0, 0.2);

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<link rel='stylesheet'
+    href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+function readURL(input){
+
+    if(input.files && input.files[0]){
+
+      var reader = new FileReader();
+
+      reader.onload = function(e){
+
+       $('#UploadedImg').html("<img id=img src=''>");
+
+       $('#img').attr('src', e.target.result);
+
+      }
+
+      reader.readAsDataURL(input.files[0]);
+
+    }  
+
+   }
+</script>
+
+</head>
+
+<body>
+
+<header> </header>
+
+   
+<div class='container'>
+<h1>게시물 작성</h1>
+<div class="aaa" id="UploadedImg">
+</div>
+
+<form  class="form-horizontal" id="codyform" method='POST' enctype="multipart/form-data"> 
+ 
+<!--  게시물 이름 --> 
+ <div class='form-group row'>
+     <label for='title' class='col-sm-2 col-form-label'>제목</label>
+     <div class='col-sm-10'>
+         <input class='form-control' id='title' type='text' name='title'>
+     </div>
+ </div>
+
+<div class='form-group row'>
+    <label for='conts' class='col-sm-2 col-form-label'>내용</label>
+    <div class='col-sm-10'>
+        <textarea class='form-control' id='conts' name='conts'></textarea>
+    </div>
+</div>
+
+<div class='form-group row'>
+    <label for='htag' class='col-sm-2 col-form-label'>해시태그</label>
+    <div class='col-sm-10'>
+       <input class='form-control' id='htag' type='text' name='htag'>
+    </div>
+</div>
+
+
+<!-- 게시물 성별 라디오창  -->
+<div class="form-group">
+<label class="col-sm-3 control-label"  for="inputName">성별</label>
+   <div class="form-group btn-group"  style="margin-left:10px;" data-toggle="buttons" >
+  <label class="btn btn-info active ">
+    <input type="radio" name="gender" value="남자" autocomplete="off" checked>남자
+  </label>
+  <label class="btn btn-info">
+    <input type="radio" name="gender"  value="여자" autocomplete="off"> 여자
+  </label>
+</div>
+</div>
+
+<!--  상의 선택 -->
+
+<div class="form-group">
+<label class="col-sm-3 control-label" >상의</label>
+<div class="form-group btn-group btn-group-toggle " data-toggle="buttons" >
+  <label class="btn btn-secondary active" style="margin-left:10px;">
+    <input type="radio" name="top" value="90" autocomplete="off" checked> 90(S)
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="top" value="95" autocomplete="off"> 95(M)
+  </label>
+
+  <label class="btn btn-secondary">
+    <input type="radio" name="top" value="100" autocomplete="off"> 100(L)
+  </label>
+  
+  <label class="btn btn-secondary">
+    <input type="radio" name="top" value="105" autocomplete="off"> 105(XL)
+  </label>
+
+  <label class="btn btn-secondary">
+    <input type="radio" name="top" value="110" autocomplete="off"> 110(2XL)
+  </label>
+  
+  </div>
+</div>
+
+<!-- 하의 관련 폼  -->              
+<div class="form-group">
+<label class="col-sm-3 control-label" >하의</label>
+<div class="form-group btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary active" style="margin-left:25px;">
+    <input type="radio" name="pants" value="26" autocomplete="off" checked> 26 
+  </label>
+  
+  <label class="btn btn-secondary ">
+    <input type="radio" name="pants" value="27" autocomplete="off"> 27 
+  </label>
+  
+  <label class="btn btn-secondary">
+    <input type="radio" name="pants" value="28" autocomplete="off"> 28
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="pants" value="29" autocomplete="off"> 29
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="pants" value="30" autocomplete="off"> 30
+  </label>
+  <label class="btn btn-secondary">
+    <input type="radio" name="pants" value="32" autocomplete="off"> 32  
+  </label>
+</div>
+</div>
+
+<div class='form-group row'>
+    <label for='file1' class='col-sm-2 col-form-label'>파일1</label>
+    <div class='col-sm-10'>
+        <input type="file" class="form-control-file" id="file1" name="file" onchange="readURL(this)">
+         <div class="aaa" id="UploadedImg">
+         </div>
+    </div>
+</div>
+
+
+<div class='form-group row'>
+<div class='col-sm-10'>
+    <button id='caddBtn' type='button' class='btn btn-primary btn-sm my-new'>게시물 작성 <i class="fa fa-check spaceLeft"></i></button>
+</div> 
+</div>
+   
+</form>
+</div>
+
+<footer> 비트캠프 자바100기@2017 </footer>
+
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='../js/cody.js'></script>
+
+</body>
+</html>
+
+

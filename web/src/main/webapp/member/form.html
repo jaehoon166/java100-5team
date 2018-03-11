@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원관리</title>
+<link type="image/x-icon" href="/favicon.ico" rel="shortcut icon"/>
+<link rel='stylesheet'
+    href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+</head>
+<body>
+
+<!--  상단 헤더  -->
+<header></header>
+
+<!--  회원가입 폼 시작 -->
+<article class="container">
+  <div class="col-md-12">
+  <div class="page-header">
+      <h1 class='my-new'>회원가입 <small>FIT PLANET</small></h1>
+      <h1 class='my-view'>개인정보 수정 <small>FIT PLANET</small></h1>
+  </div>
+  <form  class="form-horizontal" id="form" method='POST' enctype="multipart/form-data"> 
+ <p style="text-align: center">(*) 항목은 반드시 입력해 주세요.</p>
+<!--  회원 권한 자동입력 회원은 1  -->
+<input type="hidden" id='level' name='level' value="1">
+
+<!--  회원 프로필  미리보기 사진 -->
+<div id="imdiv" class="my-view" style= "width:200px;height:180px; margin:auto;" >
+</div>
+<!--  프로필 사진 입력폼  -->
+<div class="form-group my-view" style="text-align:center;">
+<div class='col-sm-10' style="text-align:center;" >
+<span id="fileInputForm" class="btn btn-secondary" style="font-size:0.8em; 
+padding-top:0px;  margin-left:50px; width:100px; height:20px; overflow:hidden; cursor:pointer;">
+사진변경
+</span>
+<input type="file" style='border:3px solid black; margin-top: -30px; opacity: 0;  position:absolute; ' 
+ class="form-control-file"  id="photo" name="file">
+</div>
+</div>
+
+
+<!--  회원 번호 출력은 안됨   -->        
+<div class="form-group my-view">
+  <div class="col-sm-6">
+    <input class="form-control" style="display: none;" readonly id="m_no" type="text" name="m_no">
+  </div>
+</div>
+
+<!--  이메일 입력-->
+  <div class="form-group">
+    <label class="col-sm-3 control-label" for="inputEmail">(*)이메일</label>
+  <div class="col-sm-6">
+    <input class="form-control" id="email" type="email" name="email" 
+    placeholder="ex)user@email.com" onkeyup="checkEmail()">
+  <div class="" id="validEmail"></div>
+  </div>
+  </div>  
+    
+  
+<!--  비밀번호 입력 -->  
+<div class="form-group">
+  <label class="col-sm-3 control-label" for="inputPassword">(*)비밀번호</label>
+<div class="col-sm-6">
+  <input class="form-control" id="pwd" type="password" name="pwd" placeholder="숫자, 특수문자 포함 8자 이상"
+  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+    required>
+     <p align="center" id="pwdinput">
+</div>
+</div>
+  <div class="form-group">
+        <label class="col-sm-3 control-label" for="inputPasswordCheck">(*)비밀번호 확인</label>
+       <div class="col-sm-6">
+        <input class="form-control" id="pwdcheck" type="password" placeholder="비밀번호 확인">
+        <p align="center" id="pwsame">
+       </div>
+    </div>
+   
+<!--  이름NAME 입력 --> 
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="inputName">(*)이름</label>
+  <div class="col-sm-6">
+    <input class="form-control" id="name" type="text" name="name" placeholder="이름">
+  </div>
+</div>
+
+<!--  닉네임(ID)입력 -->
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="inputId">(*)닉네임</label>
+  <div class="col-sm-6">
+    <input class="form-control" id="id" type="text" name="id" onkeyup="checkID()" placeholder="닉네임">
+     <div class="" id="validID"></div>
+  </div>
+</div>
+
+<!-- 성별 라디오창  -->
+<div class="form-group">
+<label class="col-sm-3 control-label"  for="inputName">(*)성별</label>
+   <div class="form-group btn-group"  style="margin-left:10px;" data-toggle="buttons" >
+  <label class="btn btn-default active ">
+    <input type="radio" name="gender" value="남자" autocomplete="off" checked>남자
+  </label>
+  <label class="btn btn-default">
+    <input type="radio" name="gender"  value="여자" autocomplete="off"> 여자
+  </label>
+</div>
+</div>
+
+<!--  나이 입력창 -->
+<div class="form-group my-view">
+    <label class="col-sm-3 control-label" for="inputAge">나이</label>
+  <div class="col-sm-6">
+    <input class="form-control" id="age" type="text" name="age" placeholder="나이">
+  </div>
+</div>
+
+<!--  휴대전화 입력 -->
+<div class="form-group my-view">
+    <label class="col-sm-3 control-label" for="inputPhone">휴대전화</label>
+  <div class="col-sm-6">
+    <input class="form-control" id="phone" type="text" name="phone" placeholder="휴대전화">
+  </div>
+</div>
+
+<!--  한줄 코멘트 -->
+<div class="form-group my-view">
+    <label class="col-sm-3 control-label" for="inputIntro">한줄 코멘트</label>
+  <div class="col-sm-6">
+    <input class="form-control" id="intro" type="text" name="intro" placeholder="코멘트">
+  </div>
+</div>
+
+
+
+
+<div class="form-group">
+  <div class="col-sm-12 text-center">
+
+    <button id='addBtn' class="btn btn-primary my-new" type='button'>회원가입<i class="fa fa-check spaceLeft"></i></button>
+    <button id='updateBtn' class="btn btn-primary my-view" type='button'>변경<i class="fa fa-check spaceLeft"></i></button>
+    <button id='deleteBtn' class="btn btn-primary my-view" type='button'>회원탈퇴<i class="fa fa-check spaceLeft"></i></button>
+    <button class="btn btn-danger my-new" type="reset" >가입취소<i class="fa fa-times spaceLeft"></i></button>
+    </div>
+</div>
+
+</form>
+<hr>
+</div>
+</article>
+
+
+<footer>
+    비트캠프 자바100기5team@2017
+</footer>
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"></script> -->
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='../js/member.js'></script>
+</body>
+</html>
+    

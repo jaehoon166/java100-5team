@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.CodyDao">
+
+    <resultMap type="cody" id="codyMap">
+        <id column="co_no" property="co_no" />
+        <result column="title" property="title" />
+        <result column="conts" property="conts" />
+        <result column="gender" property="gender" />
+        <result column="datetime" property="datetime" />
+        <result column="co_photo" property="co_photo" />
+        <result column="views" property="views" />
+        <result column="h_tag" property="h_tag" />
+        <result column="id" property="wtest" />
+        <result column="m_no" property="writer_no" />
+        <result column="likedcount" property="likedcount" />
+        <result column="top" property="top" />
+        <result column="pants" property="pants" />
+        
+         
+        <association property="writer" javaType="member">
+            <id     column="m_no"       property="m_no"/>
+            <result column="name"     property="name"/>
+            <result column="m_photo"     property="m_photo"/>
+        </association>
+       
+<!--  id column primary key  -->
+<!--  result column   그냥 column -->             
+<!--         <association property="liked" javaType="liked">
+            <id     column="co_no"       property="co_no"/>
+            <id     column="m_no"       property="m_no"/>
+            <result column="name"     property="name"/>
+        </association> -->
+        
+        
+    </resultMap>
+
+    <sql id="select1">
+        select
+        co_no,
+        title,
+        h_tag,
+        gender,
+        datetime,
+        views,
+    </sql>
+    
+    <select id="findCodyMemb" resultMap="codyMap" parameterType="map">
+        select 
+	     b.co_no, 
+	     b.title,
+	     b.co_photo,
+	     m.m_no, 
+	     m.email 
+		from cody_board as b left join member as m on b.m_no=m.m_no where m.m_no=#{memb_no}
+
+    </select>
+    
+
+    <select id="findAll" resultMap="codyMap" parameterType="map">
+        select 
+            b.co_no,
+            b.title,
+            b.conts,
+            b.h_tag,
+            b.gender,
+            b.datetime,
+            b.views,
+            b.co_photo,
+            b.m_no,
+            b.likedcount,
+            b.top,
+            b.pants,
+            m.m_photo,
+            m.id,
+            l.name,
+            l.m_no
+            
+        from cody_board as b  left outer join liked as l 
+        on b.co_no=l.co_no
+        left outer join member as m
+        on b.m_no = m.m_no
+       
+      
+
+        <if test="words != null">
+            <where>
+                <foreach collection="words" item="word">
+                    or b.gender like '%${word}%'
+                </foreach>
+            </where>
+        </if>
+        <if test="tops != null">
+            <where>
+                <foreach collection="tops" item="top">
+                    or b.top like ${top}
+                </foreach>
+            </where>
+        </if>
+        <if test="pants != null">
+            <where>
+                <foreach collection="pants" item="pant">
+                    or b.pants like ${pant}
+                </foreach>
+            </where>
+        </if>
+
+        order by co_no desc
+        limit #{startIndex}, #{size}
+          
+    </select>
+
+    <select id="findByNo" resultMap="codyMap" parameterType="int">
+        <include refid="select1" />
+        conts,
+        co_photo,
+        top,
+        pants
+        from cody_board
+        where co_no=#{value}
+    </select>
+
+    <select id="findByNo2" resultMap="codyMap" parameterType="int">
+        select
+            b.co_no,
+            b.title,
+            b.gender,
+            b.datetime,
+            b.views,
+            b.conts,
+            b.h_tag,
+            b.co_photo,
+            b.m_no,
+            b.wtest,
+            b.likedcount,
+            b.top,
+            b.pants,
+            l.co_no,
+            l.name
+        from cody_board as b left join liked as l
+        on b.co_no=l.co_no where b.co_no=#{value}
+    </select>
+
+    <select id="countAll" resultType="int">
+        select count(*) from cody_board
+    </select>
+
+  <insert id="insert" parameterType="cody" useGeneratedKeys="true"
+        keyColumn="co_no" keyProperty="co_no">
+        insert into cody_board(title,conts,h_tag,gender,datetime,views,m_no,top,pants,co_photo,likedcount)
+        values(#{title},#{conts},#{h_tag},#{gender},now(),0,#{writer.m_no},#{top},#{pants},#{co_photo},0)
+    </insert>
+    
+    <update id="update" parameterType="cody">
+       <if test="co_photo == null">
+           update cody_board set title=#{title},conts=#{conts},gender=#{gender},top=#{top},pants=#{pants}
+           where co_no=#{co_no}
+       </if>
+       <if test="co_photo != null">
+        update cody_board set
+        title=#{title},
+        conts=#{conts},
+        gender=#{gender},
+        co_photo=#{co_photo}
+        where co_no=#{co_no}
+        </if>
+    </update>
+
+    <update id="updateViewCount" parameterType="int">
+        update cody_board set
+        views=views + 1
+        where co_no=#{value}
+    </update>
+    
+    <update id="updatelikedCount" parameterType="int">
+        update cody_board 
+        set likedcount = likedcount + 1
+        where co_no=#{value}
+    </update>
+
+
+   <update id="deletelikedCount" parameterType="int">
+        update cody_board 
+        set likedcount = likedcount - 1
+        where co_no=#{value}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from cody_board
+        where
+        co_no=#{value}
+    </delete>
+
+</mapper>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- DAO 객체를 자동으로 생성하려면,
+     namespace의 값이 인터페이스 이름과 같아야 한다. -->
+<mapper namespace="java100.app.dao.MemberDao">
+
+    <resultMap type="member" id="memberMap">
+        <id column="m_no" property="m_no"/>
+        <id column="m_photo" property="m_photo"/>
+        
+          <result column="friend_count" property="friend_count" />
+        <result column="sum(b.likedcount)" property="likeAll_count" />
+        <result column="count(b.title)" property="title_count" />
+    </resultMap>
+
+
+    <sql id="select1">
+		select m_no,name,email,id,age,gender,phone,intro,m_photo,level
+	</sql>
+
+	<select id="findAll" resultMap="memberMap" parameterType="map">
+        <include refid="select1" />
+        from member  
+
+        <if test="words != null">
+            <where>
+                <foreach collection="words" item="word">
+                    or name like '${word}%'
+                </foreach>
+            </where>
+        </if>
+
+         order by 
+        <choose>
+            <when test="orderColumn == 'gender' and align == 'desc'">
+                gender desc
+            </when>
+            <when test="orderColumn == 'gender' and align == 'asc'">
+               gender  asc
+            </when>
+            <when test="orderColumn == 'name' and align == 'desc'">
+                name desc
+            </when>
+            <otherwise>
+                name asc
+            </otherwise>
+        </choose>
+        
+        <!--  페이징 처리 -->
+        limit #{startIndex}, #{size}
+    </select>
+
+	<select id="findByNo" resultMap="memberMap" parameterType="int">
+			select 
+        m.m_no,
+        m.name,
+        m.email,
+        m.id,
+        m.age,
+        m.gender,
+        m.phone,
+        m.intro,
+        m.m_photo,
+        (select count(m_no2) from friend where m_no2=#{value}) as friend_count,
+        sum(b.likedcount),
+        count(b.title)
+        from member as m left outer join cody_board as b
+    on m.m_no=b.m_no
+    where m.m_no=#{value}
+	</select>
+	
+	 <select id="findByEmailAndPassword" 
+            resultMap="memberMap" parameterType="map">
+            <include refid="select1" />
+        from member
+     where email=#{email} and pwd=password(#{pwd})
+    </select>
+    
+    <select id="findByEmail" resultMap="memberMap" parameterType="map">
+       <include refid="select1" />
+       from member 
+       where email=#{value}
+    </select>
+  
+   <select id="findById" resultMap="memberMap" parameterType="map">
+       <include refid="select1" />
+       from member 
+       where id=#{id}
+    </select>
+	
+	<select id="countAll" resultType="int">
+        select count(*) from member
+    </select>
+
+    <insert id="insert" parameterType="member">
+        insert into member(m_photo, name, email, id,
+         pwd, age, gender, phone, intro, level)
+        values(#{m_photo},#{name},#{email},#{id},password(#{pwd}),
+        #{age},#{gender},#{phone},#{intro},#{level})
+    </insert>
+    
+    <update id="update" parameterType="member">
+        <if test="m_photo == null">
+         update member set 
+            name=#{name},
+            email=#{email},
+            id=#{id},
+            pwd=password(#{pwd}),
+            age=#{age},
+            phone=#{phone},
+            intro=#{intro}
+            
+        where m_no=#{m_no}
+        </if>
+        
+        <if test="m_photo != null">
+        update member set 
+            m_photo=#{m_photo},
+            name=#{name},
+            email=#{email},
+            id=#{id},
+            pwd=password(#{pwd}),
+            age=#{age},
+            phone=#{phone},
+            intro=#{intro}
+        where m_no=#{m_no}
+        </if>
+        
+    </update>
+ 
+    <delete id="delete" parameterType="int">
+        delete from member
+        where m_no=#{value}
+    </delete>
+   
+</mapper>  
+

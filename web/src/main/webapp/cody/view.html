@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>코디게시판</title>
+<link rel='stylesheet'
+    href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+</head>
+<body>
+
+<div class='container'>
+
+<header> </header>
+
+<h1>Cody View</h1>
+        
+
+ <form  class="form-horizontal" id="upform" method='POST' enctype="multipart/form-data">
+<!-- 사진 미리보기 -->
+<!-- <div id="viewdiv" class="my-view" 
+ style= "width:200px;height:180px; margin:auto;">
+</div>
+ -->
+<!-- 코디 게시판 번호 -->
+ <div class='form-group row'>
+    <label class='col-sm-2 col-form-label'><h5>No.</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' readonly id='co_no' type='number'
+            name='co_no' >
+    </div>
+</div>
+
+
+<!--  코디 게시판 제목 -->
+<div class='form-group row'>
+    <label for='title' class='col-sm-2 col-form-label'><h5>Cody-Title</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' id='title' type='text' name='title'>
+    </div>
+</div>
+
+<!--  코디 게시판 내용 폼 -->
+<div class='form-group row'>
+    <label for='conts' class='col-sm-2 col-form-label'><h5>Content</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' id='conts' name='conts'>
+    </div>
+</div>
+
+<!--  코디 게시판 해시태그 폼 -->
+<div class='form-group row'>
+    <h5><label for='h_tag' class='col-sm-2 col-form-label'>HashTag</label></h5>
+    <div class='col-sm-10'>
+        <input class='form-control' id='h_tag' name='h_tag'>
+    </div>
+</div>
+
+<!--  코디 게시판 성별  -->
+<div class='form-group row'>
+    <label for='gender' class='col-sm-2 col-form-label'><h5>Style-gender</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' id='gender' name='gender'>
+    </div>
+</div>
+
+<!--  코디 게시판 작성 날짜  -->
+<div class='form-group row'>
+    <label for='datetime' class='col-sm-2 col-form-label'><h5>Date</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' readonly id='datetime' type='date'
+        >
+    </div>
+</div>
+
+<!--  코디 게시판 상의 -->
+<div class='form-group row'>
+<label for='top' class='col-sm-2 col-form-label'><h5>Top Size</h5></label>
+<div class='col-sm-10'>
+    <input class='form-control' id='top' name='top'>
+    </div>
+</div>
+
+<!--  코디 게시판 하의 -->
+<div class='form-group row'>
+    <label for='pants' class='col-sm-2 col-form-label'><h5>Pants Size</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' id='pants' name='pants'>
+    </div>
+</div>
+    
+
+<!--  코디 게시판 조회수 -->
+<div class='form-group row'>
+    <label for='views' class='col-sm-2 col-form-label'><h5>Count</h5></label>
+    <div class='col-sm-10'>
+        <input class='form-control' readonly id='views' type='number'>
+    </div>
+</div>
+
+<!--  코디 게시판 좋아요  -->
+<div class='form-group row'>
+    <label for='views' class='col-sm-2 col-form-label'><h5>Like+ </h5></label>
+     <button  id='likeBtn' type='button' class="btn btn-dark">좋아요</button>
+    <div id='likecount' class='col-sm-10'>
+        </div>
+</div>
+
+<div class='form-group row'>
+    <h5><label for='htag' class='col-sm-2 col-form-label'>해시태그</label></h5>
+    <div class='col-sm-10'>
+       <input class='form-control' id='htag' name='htag'>
+    </div>
+</div>
+
+    
+<table class='table table-hover'>
+ <thead>
+     <tr>
+         <th>내 코디를 좋아해주는 사람들</th>
+     </tr>
+ </thead>
+ <tbody>
+
+     </tbody>
+</table>
+
+    <hr color="black">
+    <div class='form-group row'>
+        <label class='col-sm-2 col-form-label'>첨부파일</label>
+        <div id='file' class='col-sm-10'>
+        </div>
+</div>
+
+
+<div class='form-group row'>
+    <label for='file1' class='col-sm-2 col-form-label'>파일1</label>
+    <div class='col-sm-10'>
+        <input type="file" class="form-control-file" id="file1"
+            name="file">
+    </div>
+</div>
+
+<div class='form-group row'>
+    <div class='col-sm-10'>
+        <button  id='cbupdateBtn' type='button' class="btn btn-dark">변경</button>
+        <button id='cbdeleteBtn' type='button' class="btn btn-dark">삭제</button>
+    </div>
+</div>
+</form>
+<hr color="black">
+
+
+<!-- <form action="../cody_comment/add" method='POST'>
+      <div class='form-group row'>
+    <label for='name' class='col-sm-2 col-form-label'>이름</label>
+    <div class='col-sm-10'>
+        <input class='form-control' id='co_no' type="number" name='co_no' placeholder="코디번호" hidden="1">
+    </div>
+</div>
+
+<div class='form-group row'>
+<div class='col-sm-10'>
+        <input class='form-control' id='m_no' type="number" name='m_no' placeholder="회원번호" hidden="1">
+    </div>
+</div>
+
+<div class='form-group row'>
+<div class='col-sm-10'>
+        <h5>작성자</h5><input class='form-control' id='id' type="text" name='id' placeholder="nickname"  readonly="readonly">
+    </div>
+</div>
+
+ <div class='form-group row'>
+    <label for='name' class='col-sm-2 col-form-label'>이름</label>
+        <div class='col-sm-10'>
+            <input class='form-control' id='conts' type='text' name='conts' placeholder="주의! 남을 비방하는 내용은 금지하고 있습니다.">
+        </div>
+    </div>
+    
+    
+    
+    <div class='form-group row'>
+        <div class='col-sm-10'>
+            <button id='daddBtn' type='button' class="btn btn-dark">덧글 등록</button>
+        </div>
+    </div>
+    
+</form>
+ -->
+
+</div>
+
+<script src='../node_modules/moment/moment.js'></script>
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script></body>
+
+<script type="text/javascript">
+var cbdeleteBtn = $('#cbdeleteBtn'),
+    cbupdateBtn = $('#cbupdateBtn'),
+    co_no = $('#co_no'),
+    title = $('#title'),
+    conts = $('#conts'),
+    datetime = $('#datetime'),
+    gender = $('#gender'),
+	topItem = $('#top'),
+	pants = $('#pants'),
+	htag = $('#htag'),
+    view = $('#views'),
+    file = $('#file'),
+    filelink = $('#filelink'),
+    likecount = $('#likecount'),
+    likeBtn = $('#likeBtn'),
+    liked = $('#likedcount');
+    
+
+    
+$('header').load('../header.html');
+var index = location.href.indexOf('?'); 
+
+if (index != -1) {
+var qs = location.href.substr(index + 1);
+var arr = qs.split('=');
+$ (() => {
+    
+    $.ajax('../json/cody/' + arr[1], {
+        dataType: 'json',
+        success: (result) => {
+            co_no.val(result.cody.co_no);
+            title.val(result.cody.title);
+            conts.val(result.cody.conts);
+           gender.val(result.cody.gender);
+           topItem.val(result.cody.top);
+           pants.val(result.cody.pants);
+           view.val(result.cody.views);
+           liked.val(result.cody.likedcount);
+           hatag.val(resut.cody.htag);
+           datetime.val(moment(result.cody.datetime).format('YYYY-MM-DD'));
+            console.log(result);
+            /*console.log("data 전송 성공"); */
+           file.val(result.cody.co_photo);
+            
+            file.html('<p>'+ file.val()+ '</p>'); 
+            likecount.html('<p>'+ liked.val()+ '</p>'); 
+        } ,
+        
+        error: () => {
+            window.alert('서버 실행 오류');
+        }
+    });
+});
+
+}
+
+cbdeleteBtn.click (() => {
+    
+    $.ajax('../json/cody/delete', {
+        data: {
+            co_no : co_no.val()
+        },
+        dataType: 'json',
+        success: (result) => {
+            location.href = 'list.html';
+        },
+        error: () => {
+            window.alert('서버실행오류');
+        }
+    });
+    
+});
+
+cbupdateBtn.click(() => {
+    var formData = new FormData($('#upform')[0]);
+    $.ajax('../json/cody/update', {
+        data : formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = 'list.html';
+        },
+        error : () => {
+            window.alert('서버 실행 오류');
+        }
+    });
+});
+
+likeBtn.click(() => { 
+    $.ajax('../json/cody/liked', { 
+       data: {
+           co_no : co_no.val()
+       },
+       dataType : 'json',
+       
+       success: (result) => {
+           location.href = 'list.html';
+       }, 
+       error : () => {
+           window.alert('실행오류');
+       }
+       
+    }); 
+});
+
+
+</script>
+</html>

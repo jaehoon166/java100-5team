@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원관리</title>
+<link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<!-- <link rel='stylesheet' href='../../css/common.css'>
+<link rel='stylesheet' href='../../css/form.css'> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+
+  <!-- 부트스트랩 -->
+  <link rel="stylesheet" href="../css/member/base.css">
+  <link rel="stylesheet" href="../css/member/layout.css">
+  <link rel="stylesheet" href="../css/member/post.css">
+  <link rel="stylesheet" href="../css/member/mylist.css">
+  <link rel="stylesheet" href="../css/member/search.css">
+  <link rel="stylesheet" href="../css/member/account_form.css">
+  <link rel="stylesheet" href="../css/member/post_upload.css">
+  <link rel="stylesheet" href="../css/member/media.css">
+
+
+
+</head>
+
+
+<body>
+
+
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <div class="nav-wrap">
+        <a href="/"></a>
+        <form class="search-form" action="/post/" method="post">
+          <input type='hidden' name='csrfmiddlewaretoken' value='3X9YmoS9ybeYYAyDqERPlwtkOIcEo5y9bgQIgduvCeUjOc0opJP048caTHXh4Brg' />
+          <input class="tag-search" type="text" name="tag" placeholder="검색" pattern="#?[\wㄱ-ㅎ|ㅏ-ㅣ|가-힣]+" title="특수문자, 공백 입력불가" required >
+          
+          <span class="search-icon"></span>
+        </form>
+        
+      <!--   <span class="pull-right">
+          <a class="new-post" href="/post/new/"></a>
+          <a class="follow-list" href="/post/follow/"></a>
+          
+          <a  class="account" href="/accounts/login/"></a>
+          
+        </span> -->
+
+      </div>
+    </nav>
+    
+<div id="mylist">
+<div class="container-fluid"></div>
+
+  </div>
+</div> 
+  
+  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<!--   <script src="/static/bootstrap/js/bootstrap.min.js"></script> -->
+
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+
+<script id="mytemp" type="text/x-handlebars-template">
+
+{{#if member}}
+
+  <div class="mylist-container">
+    
+    
+<div class="mylist-header">
+  <div class="mylist-header-pic">
+    
+    <img class="my-pic" src="{{contextPath}}/download/{{member.m_photo}}" alt="프로필사진">
+   
+  </div>
+  <div class="mylist-header-info">
+    <h1 class="username">{{member.id}}</h1>
+    
+   
+    <ul class="info-list">
+      <li><span class="info-list-title">게시물</span> {{member.title_count}}</li>
+      <li><span class="info-list-title">좋아요</span> {{member.likeAll_count}}</li>
+      <li><span class="info-list-title">팔로우</span> {{member.friend_count}}</li>
+    </ul>
+    <p class="about"><span class="nickname">{{member.intro}}</span></p>
+    
+  </div>
+</div>
+
+    <div class="mylist-content">
+      <div class="row">
+
+     {{#each codybook}}
+
+        <div class="pic col-md-4"><a href="../cody/{{co_no}},{{member.m_no}}"><img class="pic-src"
+ src="{{contextPath}}/download/{{co_photo}}" alt="photo"></a></div>
+     
+     {{/each}}
+      
+    </div>
+    </div>
+  </div>
+
+
+{{/if}}
+
+
+</script>  
+  
+
+<script src='../js/mview.js'></script>  
+  
+</body>
+
+
+</html>

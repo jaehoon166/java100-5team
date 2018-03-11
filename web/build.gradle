@@ -34,6 +34,10 @@ repositories {
     jcenter()
 }
 dependencies {
+
+    // 썸네일 관련 라이브러리
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8' 
+
     // MySQL DBMS의 JDBC Driver
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.44'
     
@@ -83,6 +87,9 @@ dependencies {
     
     // Spring AOP 관련 라이브러리
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.13'
+    
+    // Apache log4j 라이브러리
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
     
     compile 'com.google.guava:guava:22.0'
     

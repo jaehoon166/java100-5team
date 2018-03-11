@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>데일리트렌드</title>
+<link rel='stylesheet'
+    href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+</head>
+<body>
+  
+<!--  상단 헤더  -->
+<header></header>
+
+<div class='container'>
+
+<h1>새 게시물</h1>
+
+<form  class="form-horizontal" id="dailyform" method='POST' enctype="multipart/form-data"> 
+
+    <div class='form-group row'>
+        <label for='op_tag' class='col-sm-2 col-form-label'>태그</label>
+        <div class='col-sm-10'>
+            <input class='form-control' id='op_tag' type='text' name='op_tag'>
+        </div>
+    </div>
+
+    <div class='form-group row'>
+        <label for='file' class='col-sm-2 col-form-label'>사진</label>
+        <div class='col-sm-10'>
+            <input type="file" class="form-control-file" id="dailyphoto" name="file">
+        </div>
+    </div>
+
+    <div class='form-group row'>
+        <div class='col-sm-10'>
+            <button id='dailyBtn' class='btn btn-primary btn-sm' type='button'>등록</button>
+        </div>
+    </div>
+    
+</form>
+</div>
+
+<footer> 비트캠프 자바100기@2017 </footer>
+
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+<script type="text/javascript">
+var op_tag = $('#op_tag'),
+    dailyphoto = $('#dailyphoto'),
+    dailyBtn = $('#dailyBtn');
+
+$('header').load('../header.html', () => {
+
+});
+
+
+dailyBtn.click (() => {
+    var formData = new FormData($('#dailyform')[0]);
+    $.ajax('../json/trend/add', {
+       data: formData,
+       dataType: 'json',
+       method: 'POST',
+       processData : false,
+       contentType : false,
+       success: (result) => {
+           location.href = "../cody/list.html";
+           console.log("공!~~");
+           console.log(formData);
+       }, 
+       error: () => {
+           window.alert('서버 실행 오류');
+       }
+    });
+});
+</script>
+</body>
+</html>
