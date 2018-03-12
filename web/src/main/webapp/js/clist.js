@@ -456,14 +456,15 @@ function uplikedcountFunction(contentNo) {
         method : 'POST',
         dataType: 'json',
         success: function(result) {
-           const finder = $('#js-likebtn' + contentNo);
-           finder.removeClass('js-button').addClass('js-hoverbutton');
            
-            location.href = 'list.html';
+            const finder = $('#js-likebtn' + contentNo);
+           finder.removeClass('js-button').addClass('js-hoverbutton');
+      
     },
     error: () => {
         window.alert('서버실행오류');
     }
+      
 });
     
 }

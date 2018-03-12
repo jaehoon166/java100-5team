@@ -226,18 +226,12 @@ public class CodyController {
     
     @RequestMapping("likedelete")
     public Object likedelete(
-            Cody cody,
-            @ModelAttribute(value = "loginUser") Member loginUser,
-            Liked liked) throws Exception {
+            int co_no, Liked liked) throws Exception {
 
-        liked.getCo_no();
-        liked.getM_no();
         
-        
-        codyService.delete(cody.getCo_no());
         HashMap<String, Object> result = new HashMap<>();
-        result.put("like" , liked);
-            codyService.liked(cody);
+        likedService.delete(co_no);
+
 
         return result;
     }
