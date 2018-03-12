@@ -24,28 +24,29 @@
 </head>
 <style>
 .modal-content {
-	padding: 15px;
+   padding: 15px;
 }
 
 .modal-content:after {
-	content: "";
-	display: block;
-	clear: both;
+   content: "";
+   display: block;
+   clear: both;
 }
 
 .modal-content h1 {
-	font-size: 1rem;
-	margin-bottom: 1rem;
+   font-size: 1rem;
+   margin-bottom: 1rem;
 }
 
 .modal-lg {
-	max-width: 1200px;
-	margin: 0 auto;
+   max-width: 1200px;
+   margin: 0 auto;
 }
 
 .col-form-label h5 {
-	font-size: 1rem;
+   font-size: 1rem;
 }
+
 </style>
 
 
@@ -176,44 +177,80 @@
 				</div>
 			</div>
 
-			<div id="main_right">
 
 
-				<!--  친구 목록  시작 -->
-				<div id="firend">
+				<div id="main_right">
+            <!--  친구 목록  시작 -->
+            <div id="firend">
+               <div class="_ikq0n">
+                  <div class="_friend1 _friend2">
+                     <a> <img
+                        style="width: 50px; height: 50px; border-radius: 100%;"
+                        id="js-friendloginuserPic" src=""></a>
+                  </div>
+                  
+                  <div>
+                            <div class="menubar">
+
+                                <ul>
+                                    <li><a class="_friend3" id="js-friendloginuserId" href=""></a>
+                                        <ul>
+                                            <li><a id="mb" class="nav-link disabled"
+                                                href="form.html">게시물 올리기</a></li>
+                                            <li><a id="mb" class="mi" href="">프로필 수정</a></li>
+                                            <li><a href="" id="logoutBtn">로그아웃</a></li>
+                                        </ul></li>
+                                </ul>
+                                <a class="_friend3" id="js-friendloginuserId" href=""></a>
+                            </div>
+                            <div class="_ewiye" id="js-friendloginuserName"></div>
+                        </div>
+                  <div style="margin-left: 10px;">
+                     <div>
+                        <a class="_friend3" id="js-friendloginuserId" href=""></a>
+                     </div>
+                     <div class="_ewiye" id="js-friendloginuserName"></div>
+                  </div>
+               </div>
+
+               <!--  친구 목록  끝  -->
+               <hr class="_qwuqp">
 
 
-					<div class="_ikq0n">
-						<div class="_friend1 _friend2">
-							<a> <img
-								style="width: 50px; height: 50px; border-radius: 100%;"
-								id="js-friendloginuserPic" src=""></a>
-						</div>
-						<div>
-							<div class="menubar">
-
-								<ul>
-									<li><a class="_friend3" id="js-friendloginuserId" href=""></a>
-										<ul>
-											<li><a id="mb" class="nav-link disabled"
-												href="form.html">게시물 올리기</a></li>
-											<li><a id="mb" class="mi" href="">프로필 수정</a></li>
-											<li><a href="" id="logoutBtn">로그아웃</a></li>
-										</ul></li>
-								</ul>
-								<a class="_friend3" id="js-friendloginuserId" href=""></a>
-							</div>
-							<div class="_ewiye" id="js-friendloginuserName"></div>
-						</div>
-					</div>
-
-					<!--  친구 목록  끝  -->
-					<hr class="_qwuqp">
+               <div class="_guwow" id='js-friendlist'
+                  style="height: 272px; overflow-y: auto; overflow-x: hidden;">
 
 
-					<div class="_guwow" id='js-friendlist'
-						style="height: 272px; overflow-y: auto; overflow-x: hidden;">
+                  <!-- Friend Form -->
+                  <div id="FriendTemplete" class="_havey"
+                     style="display: none; padding-top: 0px; padding-bottom: 0px;">
+                     <div style="height: 68px; position:relative;">
+                        <a class="_j5rx4 js-friendview" href="">
+                           <div class="_82odm">
+                              <canvas class="_15vpm" width="75" height="75"
+                                 style="transform: translate(-4.8px, -4.8px); position: absolute; top: 0px; left: 0px; width: 60px; height: 60px;"></canvas>
+                              <span class="_pg23k" style="width: 50px; height: 50px;">
+                                 <img class="_rewi8 js-friendprofile"
+                                 style="width: 50px; height: 50px; border-radius: 100%;"
+                                 src="">
+                              </span>
+                           </div>
+                           <div class="_di9ug" style="margin-left: 10px;">
+                              <div class="_kb2hs">
+                                 <span class="_gh2cz js-friendId"></span>
+                              </div>
 
+                              <div class="_s63gu">
+                                 <div class="_ewiye js-friendintro"></div>
+                              </div>
+                           </div>
+                        </a> <span class="pull-right " style="position:absolute; top:14px; right:0;">
+                           <button class="button5 followdeleteBtn" id=''>팔로우 취소</button>
+                        </span>
+                     </div>
+                  </div>
+
+                  <!-- Friend Form -->
 
 						<!-- Friend Form -->
 						<div id="FriendTemplete" class="_havey"
@@ -260,7 +297,7 @@
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content" id="codyView">
 
-								<div class='container'></div>
+								<div></div>
 
 							</div>
 							<div class="modal-footer">
@@ -340,8 +377,6 @@
 		</ul>
 	</nav>
 
-	<footer> 비트캠프 자바100기@2017 </footer>
-
 	<!-- Post Template -->
 	<article id="postTemplate" class='post-wrap' style='display: none'>
 		<header>
@@ -410,12 +445,11 @@
 
 
 	<!-- Trend Post Template -->
-	<ul id=TrendTemplete style='display: none'>
+	<ul id="TrendTemplete">
 		<li>
-
 			<div class="images">
 				<a class="js-link" id="" href="" class="tag"> <img
-					class="js-trendimage" id="" src="" width="143" height="143">
+					class="js-trendimage" id="" src="" width="140" height="140">
 				</a>
 				<!-- 사용자 검색  버튼 -->
 
@@ -450,9 +484,9 @@
                 
                 <img src="{{contextPath}}/download/{{cody.co_photo}}" width=500 style="margin-bottom: 50px; float:left;">
               
-                <div id="table_wrap" style="margin-left:30px; float:left">
+                <div id="table_wrap" style="width:500px; margin-left:30px; float:left">
                 <div class='form-group row'>
-                    <label for='title' class='col-sm-5 col-form-label'><h5>Title</h5></label>
+                    <label for='title' class='col-sm-5 col-form-label'><h5>Cody-Title</h5></label>
                     <div class='col-sm-10'>
                         <p id="title">{{cody.title}}</p>
                     </div>
@@ -462,13 +496,13 @@
                 <div class='form-group row'>
                     <label for='conts' class='col-sm-5 col-form-label'><h5>Contents</h5></label>
                     <div class='col-sm-10'>
-                        <textarea class='form-control' id='conts' name='conts' cols="50" rows="10">{{cody.conts}}</textarea>
+                        <textarea class='form-control' id='conts' name='conts' cols="50" rows="3">{{cody.conts}}</textarea>
                     </div>
                 </div>
 
                 <div class='form-group row'>
                     <label for='h_tag' class='col-sm-5 col-form-label'><h5>Hash Tag</h5></label>
-                    <div class='col-sm-10'>
+                    <div class='col-sm-10' style="min-height:100px;">
                         {{cody.h_tag}}
                     </div>
                 </div>
@@ -518,6 +552,46 @@
 
 
     <form id="commentForm" method='POST'>
+            
+   
+          {{#if formcomment}}
+
+            <div class='form-group row'>
+                <!-- <label for='name' class='col-sm-2 col-form-label'>이름</label> -->
+                <div class='col-sm-10'>
+                    <input class='form-control' id='co_no' type="number" name='co_no' placeholder="코디번호" value="{{formcomment.co_no}}" hidden="1">
+                </div>
+            </div>
+            
+            <div class='form-group row'>
+            <div class='col-sm-10'>
+                    <input class='form-control' id='m_no' type="number" name='m_no' placeholder="회원번호" value="{{formcomment.m_no}}" hidden="1">
+                </div>
+            </div>
+            
+            <div class='form-group row'>
+            <!-- <label for='name' class='col-sm-2 col-form-label'>작성자</label> -->
+            <div class='col-sm-10'>
+                    <h5>작성자</h5><input class='form-control' id='id' type="text" name='id' placeholder="Id" value="{{formcomment.id}}" readonly="readonly">
+                </div>
+            </div>
+             {{/if}}
+            
+            <div class='form-group row'>
+                <!-- <label for='name' class='col-sm-2 col-form-label'>이름</label> -->
+                <div class='col-sm-10'>
+                    <input class='form-control' id='comment-conts' type='text' name='conts' placeholder="주의! 남을 비방하는 내용은 금지하고 있습니다.">
+                </div>
+            </div>
+            
+            
+            
+            <div class='form-group row'>
+                <div class='col-sm-10'>
+                    <button id="commentBtn" class="btn btn-dark">덧글 등록</button>
+                </div>
+            </div>
+            </form>
             
    
           {{#if formcomment}}

@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="../css/member/account_form.css">
   <link rel="stylesheet" href="../css/member/post_upload.css">
   <link rel="stylesheet" href="../css/member/media.css">
+  <link rel="stylesheet" href="../css/mygall.css">
 
 
 
@@ -32,9 +33,9 @@
 
 <body>
 
-
+<header id='main'> </header>
   <div class="container-fluid">
-    <nav class="navbar navbar-default">
+<!--     <nav class="navbar navbar-default">
       <div class="nav-wrap">
         <a href="/"></a>
         <form class="search-form" action="/post/" method="post">
@@ -44,16 +45,16 @@
           <span class="search-icon"></span>
         </form>
         
-      <!--   <span class="pull-right">
+        <span class="pull-right">
           <a class="new-post" href="/post/new/"></a>
           <a class="follow-list" href="/post/follow/"></a>
           
           <a  class="account" href="/accounts/login/"></a>
           
-        </span> -->
+        </span>
 
       </div>
-    </nav>
+    </nav> -->
     
 <div id="mylist">
 <div class="container-fluid"></div>
@@ -102,8 +103,14 @@
 
      {{#each codybook}}
 
-        <div class="pic col-md-4"><a href="../cody/{{co_no}},{{member.m_no}}"><img class="pic-src"
- src="{{contextPath}}/download/{{co_photo}}" alt="photo"></a></div>
+<figure class="pic col-md-4 snip1273">
+                <img class="pic-src" src="{{contextPath}}/download/{{co_photo}}" alt="photo">
+  <figcaption>
+    <h3>{{title}}</h3>
+    <p>{{conts}}</p>
+  </figcaption>
+  <a href="#"></a>
+</figure>
      
      {{/each}}
       

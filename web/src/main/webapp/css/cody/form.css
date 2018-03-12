@@ -225,10 +225,16 @@ article.post-wrap .post-content .add-comment-wrap .add-comment-btn {
     bottom: 0;
 }
 
-.js-button:hover:before, .js-button:hover:after,.js-button1:hover:before, .js-button1:hover:after {
+.js-button:hover:before, .js-button:hover:after{
     width: 100%;
     transition: 800ms ease all;
 }
+
+js-button1:hover:before, .js-button1:hover:after {
+    width: 100%;
+    transition: 400ms ease all;
+}
+
 
 .js-countliked {
     display: inline-block;
@@ -249,9 +255,15 @@ article.post-wrap .post-content .add-comment-wrap .add-comment-btn {
     outline: none;
 }
 
+.js-button1{
+	height:24px;
+}
+
 .js-button1:hover{
+	background:#fff;
     color:#ed4956 !important;
     cursor:pointer;
-    transition: 800ms ease all;
+    transition: 400ms ease all;
     
 }
+

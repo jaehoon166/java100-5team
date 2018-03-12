@@ -16,8 +16,8 @@
 }
 
 /* 메인레프트라이트영역나눈거 */
-#main_left{width:80%; float:left;}
-#main_right{width:20%; float:left;}
+#main_left{width:70%; float:left;}
+#main_right{width:30%; float:left; margin-top:35px;}
 #main_table:after{content:"";display:block;clear:both;}
 
 .navbar-tit{
@@ -46,8 +46,8 @@
 }
 
 #daily ul li {
-    width: 143px;
-    height: 143px;
+    width: 140px;
+    height: 140px;
     margin: 5px;
     display: inline-block;
 }
@@ -88,15 +88,15 @@ figure {
     left: 0;
     color: white;
     text-align: center;
-    line-height: 143px;
+    line-height: 140px;
 }
 
 .tint {
     position: relative;
     float: left;
     cursor: pointer;
-    width: 143px;
-    height: 143px;
+    width: 140px;
+    height: 140px;
 }
 
 .tint:before {

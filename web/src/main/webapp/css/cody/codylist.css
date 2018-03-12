@@ -1,277 +1,286 @@
-ul{
-   list-style:none;
-   padding-left:0px;
-   }
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
 
 .mystyle {
-    width: 600px;
-    height: 450px;
-    border: 3px solid red;
+	width: 600px;
+	height: 450px;
+	border: 3px solid red;
 }
 
 .carousel {
-    position: relative;
-    min-width: 100%;
-    height: 280px;
-    overflow: hidden;
+	position: relative;
+	min-width: 100%;
+	height: 280px;
+	overflow: hidden;
 }
 
 .carousel img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: none;
-    line-height: normal;
-    vertical-align: middle;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+	line-height: normal;
+	vertical-align: middle;
 }
 
 figure {
-    display: block;
-    margin: 0;
+	display: block;
+	margin: 0;
 }
 
 .tag {
-    color: gray;
-    font-size: 15px;
+	color: gray;
+	font-size: 15px;
 }
 
 .images {
-    position: relative;
+	position: relative;
 }
 
 .images.text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: white;
-    text-align: center;
-    line-height: 143px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: white;
+	text-align: center;
+	line-height: 140px;
+}
+
+.js-newTrend {
+	float: left;
+}
+
+.js-newTrend:after {
+	content: "";
+	display: block;
+	clear: both;
 }
 
 section.cover-photo {
-    font-family: "Proxima Nova", sans-serif;
+	font-family: "Proxima Nova", sans-serif;
 }
 
 section.cover-photo .photo-container {
-    position: relative;
-    min-width: 980px;
-    height: 320px;
-    overflow: hidden;
+	position: relative;
+	min-width: 980px;
+	height: 320px;
+	overflow: hidden;
 }
 
 section.cover-photo .photo-container .darkness {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 0;
-    background: rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 0;
+	background: rgba(0, 0, 0, 0.2);
 }
 
 section.cover-photo .photo-container .gradient {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.35) 5%, transparent 15%, transparent 80%,
-        rgba(0, 0, 0, 0.3));
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.35) 5%, transparent 15%, transparent 80%,
-        rgba(0, 0, 0, 0.3));
-    background-color: transparent;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5),
+		rgba(0, 0, 0, 0.35) 5%, transparent 15%, transparent 80%,
+		rgba(0, 0, 0, 0.3));
+	background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5),
+		rgba(0, 0, 0, 0.35) 5%, transparent 15%, transparent 80%,
+		rgba(0, 0, 0, 0.3));
+	background-color: transparent;
 }
 
 section.cover-photo .photo-container .content {
-    position: relative;
-    margin-top: 100px;
+	position: relative;
+	margin-top: 100px;
 }
 
 .content {
-    width: 100%;
-    clear: both;
+	width: 100%;
+	clear: both;
 }
 
 section.cover-photo .photo-container .content .tagline {
-    width: 100%;
-    font-size: 26px;
-    text-align: center;
-    color: white;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+	width: 100%;
+	font-size: 26px;
+	text-align: center;
+	color: white;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 section.cover-photo .photo-container .content .actions {
-    margin-top: 25px;
+	margin-top: 25px;
 }
 
 .actions {
-    line-height: 2em;
-    font-size: 12px;
-    color: #aaa;
-    padding-left: 2px;
+	line-height: 2em;
+	font-size: 12px;
+	color: #aaa;
+	padding-left: 2px;
 }
 
 section.cover-photo .photo-container .photo-credit {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 13px;
-    position: absolute;
-    right: 25px;
-    bottom: 20px;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 13px;
+	position: absolute;
+	right: 25px;
+	bottom: 20px;
 }
 
 .slide-cover {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 1;
 }
 
 .carousel-content {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    width: 100%;
-    /* height: 100%; */
-    color: #fff;
-    text-align: center;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 100%;
+	/* height: 100%; */
+	color: #fff;
+	text-align: center;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.75),
+		rgba(0, 0, 0, 0.25));
 }
 
 .tagline {
-    width: 100%;
-    font-size: 26px;
-    text-align: center;
-    color: white;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+	width: 100%;
+	font-size: 26px;
+	text-align: center;
+	color: white;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
-
-
-
-
-.menubar{
-border:none;
-border:0px;
-margin:0px;
-padding:0px;
-font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
-font-size:14px;
-font-weight:bold;
+.menubar {
+	border: none;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans",
+		"Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica,
+		sans-serif;
+	font-size: 14px;
+	font-weight: bold;
 }
 
-.menubar ul{
-height:50px;
-list-style:none;
-margin:0;
-padding:0;
+.menubar ul {
+	height: 50px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-.menubar li{
-float:left;
-padding:0px;
+.menubar li {
+	float: left;
+	padding: 0px;
 }
 
-.menubar li a{
-color:#343a40;
-display:block;
-font-weight:normal;
-line-height:50px;
-margin:0px;
-padding:0px 25px;
-text-align:center;
-text-decoration:none;
+.menubar li a {
+	color: #343a40;
+	display: block;
+	font-weight: normal;
+	line-height: 50px;
+	margin: 0px;
+	padding: 0px 25px;
+	text-align: center;
+	text-decoration: none;
 }
 
-.menubar ul li #mb{
-color:#FFFFFF;
-text-decoration:none;
-}
-.menubar ul li #logoutBtn{
-color:#FFFFFF;
-text-decoration:none;
+.menubar ul li #mb {
+	color: #FFFFFF;
+	text-decoration: none;
 }
 
-.menubar li ul{
-background: rgb(109,109,109);
-display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
-height:auto;
-padding:0px;
-margin:0px;
-border:0px;
-position:absolute;
-width:200px;
-z-index:200;
-/*top:1em;
+.menubar ul li #logoutBtn {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.menubar li ul {
+	background: rgb(109, 109, 109);
+	display: none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	width: 200px;
+	z-index: 200;
+	/*top:1em;
 /*left:0;*/
 }
 
-.menubar li:hover ul{
-display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+.menubar li:hover ul {
+	display: block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
 }
 
 .menubar li li {
-background: rgb(109,109,109);
-display:block;
-float:none;
-margin:0px;
-padding:0px;
-width:200px;
+	background: rgb(109, 109, 109);
+	display: block;
+	float: none;
+	margin: 0px;
+	padding: 0px;
+	width: 200px;
 }
 
-.menubar li:hover li a{
-background:none;
+.menubar li:hover li a {
+	background: none;
 }
 
-.menubar li ul a{
-display:block;
-height:50px;
-font-size:12px;
-font-style:normal;
-margin:0px;
-padding:0px 10px 0px 15px;
-text-align:left;
+.menubar li ul a {
+	display: block;
+	height: 50px;
+	font-size: 12px;
+	font-style: normal;
+	margin: 0px;
+	padding: 0px 10px 0px 15px;
+	text-align: left;
 }
 
-.menubar li ul a:hover, .menubar li ul li:hover a{
-background: rgb(71,71,71);
-border:0px;
-color:#ffffff;
-text-decoration:none;
+.menubar li ul a:hover, .menubar li ul li:hover a {
+	background: rgb(71, 71, 71);
+	border: 0px;
+	color: #ffffff;
+	text-decoration: none;
 }
 
-.menubar p{
-clear:left;
+.menubar p {
+	clear: left;
 }
-
 
 .nav-tabs {
-   border: none;
+	border: none;
 }
 
 .nav-link {
-   padding: .5rem .5rem;
+	padding: .5rem .5rem;
 }
 
 .button5 {
-    background-color: white;
-    color: black;
-    border: 2px solid #555555;
+	background-color: white;
+	color: black;
+	border: 2px solid #555555;
 }
 
 .button5:hover {
-    background-color: #555555;
-    color: white;
+	background-color: #555555;
+	color: white;
 }
