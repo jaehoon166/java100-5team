@@ -22,6 +22,32 @@
 <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 
 </head>
+<style>
+.modal-content {
+    padding: 15px;
+}
+
+.modal-content:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.modal-content h1 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-lg {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.col-form-label h5 {
+    font-size: 1rem;
+}
+</style>
+
 
 
 
@@ -379,18 +405,63 @@
 </script>
 
 
-
     <script id="templete3" type="text/x-handlebars-template">
 
    <h1>Cody View </h1>
 
 
     {{#if cody}}
-
             <form action='update' method='post' enctype="multipart/form-data">
                 
-                <img src="{{contextPath}}/download/{{cody.co_photo}}" width=500 style="margin-bottom: 50px;">
+                <img src="{{contextPath}}/download/{{cody.co_photo}}" width=500 style="margin-bottom: 50px; float:left;">
               
+                <div id="table_wrap" style="margin-left:30px; float:left">
+                <div class='form-group row'>
+                    <label for='title' class='col-sm-5 col-form-label'><h5>Title</h5></label>
+                    <div class='col-sm-10'>
+                        <p id="title">{{cody.title}}</p>
+                    </div>
+                </div>
+                
+                
+                <div class='form-group row'>
+                    <label for='conts' class='col-sm-5 col-form-label'><h5>Contents</h5></label>
+                    <div class='col-sm-10'>
+                        <textarea class='form-control' id='conts' name='conts' cols="50" rows="10">{{cody.conts}}</textarea>
+                    </div>
+                </div>
+
+                <div class='form-group row'>
+                    <label for='h_tag' class='col-sm-5 col-form-label'><h5>Hash Tag</h5></label>
+                    <div class='col-sm-10'>
+                        {{cody.h_tag}}
+                    </div>
+                </div>
+
+
+
+                <div class='form-group row'>
+                    <label for='gender' class='col-sm-5 col-form-label'><h5>Style-gender</h5></label>
+                    <div class='col-sm-10'>
+                        {{cody.gender}}
+                    </div>
+                </div>
+                <div class='form-group row'>
+                    <label for='datetime' class='col-sm-5 col-form-label'><h5>Date</h5></label>
+                    <div class='col-sm-10'>
+                        {{cody.changetime}}
+                    </div>
+                </div>
+               
+                
+                
+                <div class='form-group row'>
+                    <label for='views' class='col-sm-5 col-form-label'><h5>Count</h5></label>
+                    <div class='col-sm-10'>
+                        {{cody.views}}
+                    </div>
+                </div>
+                </div>
                 
                 <table class='table table-hover' style="margin-bottom: 20px;">
                     <thead>
@@ -405,57 +476,12 @@
                     </tbody>
                </table>
                 
-                <div class='form-group row'>
-                    <label for='title' class='col-sm-2 col-form-label'><h5>Cody-Title</h5></label>
-                    <div class='col-sm-10'>
-                        <p id="title">{{cody.title}}</p>
-                    </div>
-                </div>
-                
-                
-                <div class='form-group row'>
-                    <label for='conts' class='col-sm-2 col-form-label'><h5>Contents</h5></label>
-                    <div class='col-sm-10'>
-                        <textarea class='form-control' id='conts' name='conts' cols="50" rows="10">{{cody.conts}}</textarea>
-                    </div>
-                </div>
 
-                <div class='form-group row'>
-                    <label for='h_tag' class='col-sm-2 col-form-label'><h5>Hash Tag</h5></label>
-                    <div class='col-sm-10'>
-                        {{cody.h_tag}}
-                    </div>
-                </div>
-
-
-
-                <div class='form-group row'>
-                    <label for='gender' class='col-sm-2 col-form-label'><h5>Style-gender</h5></label>
-                    <div class='col-sm-10'>
-                        {{cody.gender}}
-                    </div>
-                </div>
-                <div class='form-group row'>
-                    <label for='datetime' class='col-sm-2 col-form-label'><h5>Date</h5></label>
-                    <div class='col-sm-10'>
-                        {{cody.changetime}}
-                    </div>
-                </div>
-               
-                
-                
-                <div class='form-group row'>
-                    <label for='views' class='col-sm-2 col-form-label'><h5>Count</h5></label>
-                    <div class='col-sm-10'>
-                        {{cody.views}}
-                    </div>
-                </div>
                     
             </form>
          {{/if}}
 
 
-<hr color="black">
     <form id="commentForm" method='POST'>
             
    
@@ -497,6 +523,7 @@
                 </div>
             </div>
             </form>
+
         
 
     <table class='table table-hover'>
@@ -508,16 +535,17 @@
                {{#each comment}}
                    
                   
-                    <tr>
-                          <td style="border: solid white; border-top: 1px solid black;"><h6>{{id}} ({{changetime}})</h6></td>   
-                    </tr>
-                    <tr>
-                   
-                         
-                     
-                        <td style="border-bottom: 1px solid black"><p style="color:black;">{{conts}}</p><hr></td>
-                     
-                    </tr>
+    <div class='form-group row'>
+                    <label for='title' class='col-sm-2 col-form-label'><img class="user-pic" style="border-radius:100%" width="35px" height="35px" src="../download/{{m_photo}}">
+                          {{id}}</label>
+                    <div class='col-sm-10'>
+                        <p style="color:black;">{{conts}}</p>
+                    <button id="commentdeleteBtn{{com_no}}" class="btn btn-dark pull-right" type="button">덧글 삭제</button>
+                    </div>
+                </div>
+            
+       
+
                     
                {{/each}}
             

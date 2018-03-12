@@ -66,6 +66,8 @@ public class FriendController {
             // codyWno 게시물 작성자 m_no
             @RequestParam(value="codyWno", required=false) String codyWno,
             
+            // show_photo 댓글 등록시 로그인유저 사진
+            @RequestParam(value="show_photo", required=false) String show_photo,
             
             @ModelAttribute(value = "loginUser") Member loginUser,
             Friend friend,
@@ -103,7 +105,7 @@ public class FriendController {
             cody_comment.setCo_no(co_noo);
             cody_comment.setM_no(loginUser.getM_no());
             cody_comment.setId(loginUser.getId());
-          
+            cody_comment.setM_photo(loginUser.getM_photo());
             
             result.put("formcomment", cody_comment);
             

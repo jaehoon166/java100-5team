@@ -359,8 +359,6 @@ function fillArticleForm (userPic, userId, contentPic, contentNo, writerNo,
     
 }
 
-
-
 function modalViewFunction(writerNo,contentNo) {
     
     
@@ -371,7 +369,7 @@ function modalViewFunction(writerNo,contentNo) {
         },
         dataType: 'json',
         success: (result) => {
-            
+         
             codyView.html(template3Engine(result));
             
             $('.bd-example-modal-lg').modal('show')
@@ -393,7 +391,22 @@ function modalViewFunction(writerNo,contentNo) {
                     contentType : false,
                     dataType: 'json',
                     success: (result) => {
-                        console.log(result);
+                        $.ajax('../json/friend/list', {
+                            data: {
+                                codyNo : contentNo,
+                                codyWno : writerNo
+                            },
+                            dataType: 'json',
+                            success: (result) => {
+                             
+                                codyView.html(template3Engine(result));
+                                
+                                $('.bd-example-modal-lg').modal('show');
+                            },
+                            error: () => {
+                                console.log('덧글 실행 오류!');
+                            }
+                        });
                     },
                     error: () => {
                         console.log('덧글 실행 오류!');
@@ -401,6 +414,45 @@ function modalViewFunction(writerNo,contentNo) {
                 });
                
             });
+
+            console.log(result);
+            for (var comm of result.comment) {
+                const commentdelete = $('#commentdeleteBtn' + comm.com_no);
+                commentdelete.click(() => {
+                    
+                    $.ajax('../json/cody_comment/delete', {
+                        data: {
+                            com_no : comm.com_no
+                        },
+                        dataType: 'json',
+                        success: (result) => {
+                           
+                            $.ajax('../json/friend/list', {
+                                data: {
+                                    codyNo : contentNo,
+                                    codyWno : writerNo
+                                },
+                                dataType: 'json',
+                                success: (result) => {
+                                    
+                                    codyView.html(template3Engine(result));
+                                    
+                                    $('.bd-example-modal-lg').modal('show');
+                                },
+                                error: () => {
+                                    console.log('덧글 실행 오류!');
+                                }
+                            });
+                        },
+                        error: () => {
+                            console.log('덧글 삭제 오류!');
+                        }
+                    });
+                   
+                });
+            }
+            
+         
            
     },
     error: () => {

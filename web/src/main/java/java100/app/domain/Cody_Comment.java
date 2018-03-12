@@ -10,12 +10,35 @@ public class Cody_Comment {
     protected Date date;
     protected String changetime;
     protected String id;
-    
-    
+    protected String m_photo;
+    protected String comment_photo;
+
+
     @Override
     public String toString() {
         return "Cody_Comment [com_no=" + com_no + ", co_no=" + co_no + ", m_no=" + m_no + ", conts=" + conts + ", date="
-                + date + ", changetime=" + changetime + ", id=" + id + "]";
+                + date + ", changetime=" + changetime + ", id=" + id + ", m_photo=" + m_photo + ", comment_photo="
+                + comment_photo + "]";
+    }
+
+
+    public String getComment_photo() {
+        return comment_photo;
+    }
+
+
+    public void setComment_photo(String comment_photo) {
+        this.comment_photo = comment_photo;
+    }
+
+
+    public String getM_photo() {
+        return m_photo;
+    }
+
+
+    public void setM_photo(String m_photo) {
+        this.m_photo = m_photo;
     }
 
 

@@ -11,11 +11,13 @@
      <result column="conts" property="conts" />
      <result column="id" property="id" />
      <result column="date" property="date" />
-     
+       <result column="m_photo" property="m_photo" />
+       <result column="comment_photo" property="comment_photo" />
+       
      </resultMap>
      
      <select id="findAll" resultMap="cody_commentMap" parameterType="map">
-        select com_no, co_no, m_no, id, conts, date from cody_comment where co_no=#{co_no}
+        select com_no, co_no, m_no, id, conts, m_photo, date, comment_photo from cody_comment where co_no=#{co_no}
         </select>
      
      <select id="findBycody_commentMapNo" resultType="cody_comment" parameterType="int">
@@ -38,8 +40,8 @@
     </update>
    
     <insert id="insert" parameterType="cody_comment">
-        insert into cody_comment(co_no, m_no, conts, id, date)
-        values(#{co_no}, #{m_no}, #{conts}, #{id}, now())
+        insert into cody_comment(co_no, m_no, conts, id, m_photo, date, comment_photo)
+        values(#{co_no}, #{m_no}, #{conts}, #{id}, #{m_photo}, now(), #{comment_photo})
     </insert>
     
     <delete id="deleteAllcody_commentNo" parameterType="int">
@@ -47,10 +49,6 @@
         where com_no = #{value}
     </delete>
 
-    <delete id="deleteAllcody_commentCoNo" parameterType="int">
-        delete from cody_comment
-        where co_no = #{value}
-    </delete>
 
 
 </mapper>
