@@ -57,6 +57,7 @@ public class CodyController {
             @RequestParam(value = "words", required = false) String[] words,
             @RequestParam(value = "tops", required = false) String[] tops,
             @RequestParam(value = "pants", required = false) String[] pants,
+            @RequestParam(value = "h_tag", required = false) String[] h_tag,
             @RequestParam(value = "oc", required = false) String orderColumn,
             @RequestParam(value = "al", required = false) String align,
             @ModelAttribute(value = "loginUser") Member loginUser,
@@ -78,8 +79,11 @@ public class CodyController {
             options.put("tops", tops);
         } else if (pants != null && pants[0].length() > 0) {
             options.put("pants", pants);
+        } else if (h_tag != null && h_tag[0].length() > 0) {
+            options.put("h_tag", h_tag);
         }
-
+        
+        
         options.put("orderColumn", orderColumn);
         options.put("align", align);
 

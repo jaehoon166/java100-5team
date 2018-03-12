@@ -38,6 +38,7 @@ function PantsSize(value){
    
  }
 
+
 function TopSize(value) {
     
     if(value == 'tops') {
@@ -211,6 +212,9 @@ prevBtn.click (() => {
          dataType: 'json',
          success: (result) => {
          
+             console.log('결과------------------------------------------');
+             console.log(result);
+             console.log('결과------------------------------------------');
              for (var data of result.list) {
                 
                  fillArticleForm(data.writer.m_photo, data.wtest, data.co_photo,
@@ -496,19 +500,29 @@ trend.innerHTML = $('#TrendTemplete')[0].innerHTML;
     
     $($trend.find('.js-trtag')).prop('id', 'js-trendtag' + TrendNo);
     $($trend.find('#js-trendtag' + TrendNo)).prop('lang', TrendTag);  
-    $($trend.find('.js-trtag')).attr('onclick', 'tagurlFunction(' + TrendNo + ')');
-    
+    $($trend.find('.js-trtag')).attr('onclick', 'if(this.lang) HashTag(this.lang);');
     
     $('#trendli').append(trend);
 
 
 }
 
+function HashTag(lang){
 
-function tagurlFunction(TrendNo) {
-    location.href = '../cody/list?tag=';
+    alert(lang);
     
-}
+        var h_tag = lang;
+        console.log(h_tag);
+
+         load(1, {
+             h_tag: h_tag
+         }) 
+        
+   
+ } 
+
+
+
 
 
 // Friend Templete  

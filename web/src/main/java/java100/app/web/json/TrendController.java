@@ -47,7 +47,6 @@ public class TrendController {
             pageSize = 5;
         }
         
-        System.out.println("Trend Controller 도착!!!!");
         HashMap<String, Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {
             options.put("words", words);
@@ -58,7 +57,6 @@ public class TrendController {
         
         HashMap <String, Object> result = new HashMap<>();
         result.put("list1", trendService.list1(pageNo, pageSize,options));
-        System.out.println(trendService.list1(pageNo, pageSize, options).toString());
         return  result ;
     }
 
@@ -82,8 +80,6 @@ public class TrendController {
             uploadFiles.add(new UploadFile(filename, Thumbnail));
         }
 
-        System.out.println(loginUser.getM_no());
-        System.out.println("---------------------");
         trendService.add(trend);
         HashMap<String, Object> result = new HashMap<>();
         
@@ -111,8 +107,6 @@ public class TrendController {
             uploadFiles.add(new UploadFile(filename, Thumbnail));
         }
         
-        System.out.println(trend.getPhoto());
-        System.out.println(trend.getOp_tag());
 
         trendService.update(trend);
 
@@ -121,10 +115,13 @@ public class TrendController {
     
 
     @RequestMapping("delete")
-    public String delete(int tr_no) throws Exception {
-        System.out.println(tr_no);
+    public Object delete(int tr_no) throws Exception {
+     
         trendService.delete(tr_no);
-        return "redirect:../cody/list";
+        
+        HashMap <String, Object> result = new HashMap<>();
+        
+        return result;
     }
 
     long prevMillis = 0;

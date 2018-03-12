@@ -93,6 +93,8 @@
                 </foreach>
             </where>
         </if>
+        
+        
         <if test="tops != null">
             <where>
                 <foreach collection="tops" item="top">
@@ -104,6 +106,14 @@
             <where>
                 <foreach collection="pants" item="pant">
                     or b.pants like ${pant}
+                </foreach>
+            </where>
+        </if>
+
+    <if test="h_tag != null">
+            <where>
+                <foreach collection="h_tag" item="h_tag">
+                    or b.h_tag like '%${h_tag}%'
                 </foreach>
             </where>
         </if>
