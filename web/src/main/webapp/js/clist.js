@@ -73,7 +73,7 @@ function sex(value){
  } 
 
 
-//---------------------------------------------------- 검색조건 함수 끝
+// ---------------------------------------------------- 검색조건 함수 끝
 
 template2Src = $('#templete2').html();
 template2Engine = Handlebars.compile(template2Src);
@@ -93,7 +93,7 @@ function load2(pageNo, options) {
 
 
     $.ajax('../json/friend/list', {
-        /*method: 'GET',*/
+        /* method: 'GET', */
         data: options,
         dataType: 'json',
         success: (result) => {
@@ -108,6 +108,9 @@ function load2(pageNo, options) {
                 friendmainuserPic.prop('src', '/download/' + friendfilename);
                 
             }
+            
+            $('.mi').prop('href', '../member/form.html?no='+  result.loginUser.m_no);
+            
            friendmainuserId.prop('href', '../member/view.html?no=' + result.loginUser.m_no);
            friendmainuserId.text(result.findByMyNo.id);
            friendmainuserName.text(result.findByMyNo.name);
@@ -152,7 +155,7 @@ function load2(pageNo, options) {
 
 
 
-//  ----------------------------------------------------- 친구 목록 load 끝
+// ----------------------------------------------------- 친구 목록 load 끝
 $('#main').load('../header.html', () => {
     
     load(1);
@@ -241,8 +244,8 @@ prevBtn.click (() => {
                  }
            
       
-                 // CASE :: 로그인한 유저가 좋아요를 클릭한 게시물인 경우, 
-                 //         좋아요 버튼 초록색 / 아닌경우는 흰색.
+                 // CASE :: 로그인한 유저가 좋아요를 클릭한 게시물인 경우,
+                 // 좋아요 버튼 초록색 / 아닌경우는 흰색.
                    
                     for (var likedMember of result.likedAll) {
                         
@@ -257,7 +260,7 @@ prevBtn.click (() => {
              currPageNo = result.pageNo;
              currBtn.html(currPageNo);
              
-             /*console.log(result);*/
+             /* console.log(result); */
              
              if (result.pageNo == 1) {
                  $(prevBtn.parent()).addClass("disabled");
@@ -280,18 +283,25 @@ prevBtn.click (() => {
  }
  
  
- //  ---------------------------------------------- 메인 코디 리스트 로드 끝
+ // ---------------------------------------------- 메인 코디 리스트 로드 끝
  
  /**
-     * DESC :: Article 템플릿을 동적으로 생성하는 함수입니다.
-     * @param userPic :         String / 유저 사진
-     * @param userId :          String / 유저 아이디
-     * @param contentPic :      String / 게시물 사진
-     * @param contentNO :       int / 게시물 번호
-     * @param writerNo :        int / 게시물 작성자번호
-     * @param listLikedCount:   int / 좋아요 갯수
-     * @return                   null 
-  */
+	 * DESC :: Article 템플릿을 동적으로 생성하는 함수입니다.
+	 * 
+	 * @param userPic :
+	 *            String / 유저 사진
+	 * @param userId :
+	 *            String / 유저 아이디
+	 * @param contentPic :
+	 *            String / 게시물 사진
+	 * @param contentNO :
+	 *            int / 게시물 번호
+	 * @param writerNo :
+	 *            int / 게시물 작성자번호
+	 * @param listLikedCount:
+	 *            int / 좋아요 갯수
+	 * @return null
+	 */
  
 function fillArticleForm (userPic, userId, contentPic, contentNo, writerNo,
                           listLikedCount) {
@@ -315,30 +325,30 @@ function fillArticleForm (userPic, userId, contentPic, contentNo, writerNo,
     // [2] Template의 User ID 의 값을 변경한다.
     $($article.find('.js-userId')).text(userId);
     
-    // [3] Template 의 cldeletBtn 실행시  게시물의 번호값 받아서 삭제 실행
+    // [3] Template 의 cldeletBtn 실행시 게시물의 번호값 받아서 삭제 실행
     $($article.find('.cldeleteBtn')).attr('onclick','deleteposterFunction('+ contentNo + ')');
     
-    // [4] Template 의 cldeletBtn 실행시  게시물 번호, 작성자 번호값 받아서 view로 이동
+    // [4] Template 의 cldeletBtn 실행시 게시물 번호, 작성자 번호값 받아서 view로 이동
     $($article.find('.clchangeBtn')).attr('onclick','changeposterFunction('+ contentNo + ',' + writerNo +')');
     
     // [5] Template의 Content pic의 src 값을 변경한다.
     $($article.find('.js-contentPic')).prop('src', '/download/' + contentPic);
     
-    //[6] Template의  좋아요 버튼에 name값에 게시물 번호 삽입.
+    // [6] Template의 좋아요 버튼에 name값에 게시물 번호 삽입.
     $($article.find('.js-likedBtn')).prop('id', 'js-likebtn' + contentNo);
     
-    // [6-1]  listLikedCount 게시물 번호로 id 값 지정 / 좋아요 수를 p태그에 삽입 
+    // [6-1] listLikedCount 게시물 번호로 id 값 지정 / 좋아요 수를 p태그에 삽입
     $($article.find('.js-countliked')).prop('id', 'js-countlike' + contentNo).text('좋아요' + listLikedCount + '개');
     
-    // [6-2] Template의  listLikedCount 증가. 
+    // [6-2] Template의 listLikedCount 증가.
     $($article.find('.js-likedBtn')).attr('onclick','uplikedcountFunction('+ contentNo + ')');
     
    
-    // [6-3] Template의  js-likebtn 의 값을 찾아 마우스가 중심으로 이동시 text 값에 +1 출력 
+    // [6-3] Template의 js-likebtn 의 값을 찾아 마우스가 중심으로 이동시 text 값에 +1 출력
     $($article.find('#js-likebtn' + contentNo)).mouseenter(function(){
         $('#js-countlike' + contentNo).text('+1');
       });
- // [6-3] Template의  js-likebtn 의 값을 찾아 마우스가 중심을 벗어 날 경우  text 값에 좋아요수 출력
+ // [6-3] Template의 js-likebtn 의 값을 찾아 마우스가 중심을 벗어 날 경우 text 값에 좋아요수 출력
     $($article.find('#js-likebtn' + contentNo)).mouseleave(function(){
         $('#js-countlike' + contentNo).text('좋아요' + listLikedCount + '개');
       });
@@ -351,8 +361,10 @@ function fillArticleForm (userPic, userId, contentPic, contentNo, writerNo,
     $($article.find('.js-modalBtn')).prop('data-mno5', 'js-modalbtn' + writerNo);
     $($article.find('.js-modalBtn')).attr('onclick','modalViewFunction('+ writerNo + ',' + contentNo + ')');
     
-    /* //  Template 의 Content No 의 값을 설정 나중에 필요없으면 삭제할 것!!
-    $($article.find('.js-contentNo')).text(contentNo);*/
+    /*
+	 * // Template 의 Content No 의 값을 설정 나중에 필요없으면 삭제할 것!!
+	 * $($article.find('.js-contentNo')).text(contentNo);
+	 */
   
     // coli 라는 div에 article 추가.
     $('#coli').append(article);
@@ -384,7 +396,7 @@ function modalViewFunction(writerNo,contentNo) {
                 var commentForm = new FormData($("#commentForm")[0]);
                 
                 $.ajax('../json/cody_comment/add', {
-                    /*method: 'GET',*/
+                    /* method: 'GET', */
                     data: commentForm,
                     method: 'POST',
                     processData : false,
@@ -479,7 +491,7 @@ function followFunction(writerNo) {
 });
 }
 
-//삭제 버튼을 누르면 실행되는 함수
+// 삭제 버튼을 누르면 실행되는 함수
 function  deleteposterFunction(contentNo) {
     
     $.ajax('../json/cody/delete', {
@@ -496,7 +508,7 @@ function  deleteposterFunction(contentNo) {
 });
 }
 
-//수정 버튼을 누르면 실행되는 함수
+// 수정 버튼을 누르면 실행되는 함수
 function  changeposterFunction(contentNo, writerNo) {
     location.href = 'view.html?no=' + contentNo +',' + writerNo;
 }
@@ -526,12 +538,16 @@ function uplikedcountFunction(contentNo) {
 }
 
 
-/***
- *   * DESC :: Trend 템플릿을 동적으로 생성하는 함수입니다.
- * @param TrendNo       :  트렌드 게시물 번호
- * @param TrendPic    :  트렌드 사진
- * @param TrendTag      :  트렌드 해시태그
- * @return null 
+/*******************************************************************************
+ * * DESC :: Trend 템플릿을 동적으로 생성하는 함수입니다.
+ * 
+ * @param TrendNo :
+ *            트렌드 게시물 번호
+ * @param TrendPic :
+ *            트렌드 사진
+ * @param TrendTag :
+ *            트렌드 해시태그
+ * @return null
  */
 function fillTrendForm (TrendNo, TrendPic, TrendTag) {
 
@@ -577,16 +593,23 @@ function HashTag(lang){
 
 
 
-// Friend Templete  
-/***
+// Friend Templete
+/*******************************************************************************
  * 
- * @param MyNo          : 로그인한 User No
- * @param MyId          : 로그인한 User ID
- * @param MyProfile     : 로그인한 User 사진
- * @param FriendId      : 팔로우한 유저 ID
- * @param FriendNo      : 팔로우한 유저 No 
- * @param FriendProfile : 팔로우한 유저 사진
- * @param FriendComment : 팔로우한 유저 코멘트
+ * @param MyNo :
+ *            로그인한 User No
+ * @param MyId :
+ *            로그인한 User ID
+ * @param MyProfile :
+ *            로그인한 User 사진
+ * @param FriendId :
+ *            팔로우한 유저 ID
+ * @param FriendNo :
+ *            팔로우한 유저 No
+ * @param FriendProfile :
+ *            팔로우한 유저 사진
+ * @param FriendComment :
+ *            팔로우한 유저 코멘트
  * @returns NULL
  */
 function FriendForm (MyNo, MyId, MyProfile, FriendId, FriendNo, FriendProfile, FriendComment) {
@@ -618,28 +641,19 @@ function FriendForm (MyNo, MyId, MyProfile, FriendId, FriendNo, FriendProfile, F
 }
 
 
-/*function modalViewFunction(FriendNo, FriendId) {
-    
-    
-    $.ajax('../json/friend/list', {
-        data: {
-            fd_no : FriendNo,
-            show_no : FriendId
-        },
-        dataType: 'json',
-        success: (result) => {
-            
-            
-            
-            $('#FollowDeleteModal').modal('show')
-            
-            
-    },
-    error: () => {
-        window.alert('서버실행오류');
-    }
-});
-}*/
+/*
+ * function modalViewFunction(FriendNo, FriendId) {
+ * 
+ * 
+ * $.ajax('../json/friend/list', { data: { fd_no : FriendNo, show_no : FriendId },
+ * dataType: 'json', success: (result) => {
+ * 
+ * 
+ * 
+ * $('#FollowDeleteModal').modal('show')
+ * 
+ *  }, error: () => { window.alert('서버실행오류'); } }); }
+ */
 
 function frienddeleteBtnFunction(MyNo, FriendNo)  {
 $.ajax('../json/friend/delete', {

@@ -185,7 +185,7 @@ padding:0px;
 }
 
 .menubar li a{
-color:#cccccc;
+color:#343a40;
 display:block;
 font-weight:normal;
 line-height:50px;
@@ -195,7 +195,11 @@ text-align:center;
 text-decoration:none;
 }
 
-.menubar li a:hover, .menubar ul li:hover a{
+.menubar ul li #mb{
+color:#FFFFFF;
+text-decoration:none;
+}
+.menubar ul li #logoutBtn{
 color:#FFFFFF;
 text-decoration:none;
 }
