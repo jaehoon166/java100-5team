@@ -403,6 +403,7 @@ function modalViewFunction(writerNo,contentNo) {
                     contentType : false,
                     dataType: 'json',
                     success: (result) => {
+                      
                         $.ajax('../json/friend/list', {
                             data: {
                                 codyNo : contentNo,
@@ -416,12 +417,12 @@ function modalViewFunction(writerNo,contentNo) {
                                 $('.bd-example-modal-lg').modal('show');
                             },
                             error: () => {
-                                console.log('덧글 실행 오류!');
+                                console.log('덧글 실행 오류1!');
                             }
                         });
                     },
                     error: () => {
-                        console.log('덧글 실행 오류!');
+                        console.log('덧글 실행 오류2!');
                     }
                 });
                

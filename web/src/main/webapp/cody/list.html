@@ -361,7 +361,7 @@
 
 
 			<span class='pull-right'> <!--  [3] Follow  --> <a
-				class="js-button js-followBtn" id=""
+				class="js-button js-followBtn js-button1 js-followBtn1" id=""
 				style="color: black; font-size: medium;">Follow</a>
 			</span> <span class='pull-right js-editwrap'>
 				<button type='button' class='post-edit clchangeBtn'>수정</button> <input
@@ -534,6 +534,12 @@
                     <input class='form-control' id='m_no' type="number" name='m_no' placeholder="회원번호" value="{{formcomment.m_no}}" hidden="1">
                 </div>
             </div>
+
+  <div class='form-group row'>
+            <div class='col-sm-10'>
+                    <input class='form-control' id='m_photo' type="text" name='m_photo' placeholder="회원사진" value="{{formcomment.m_photo}}" hidden="1">
+                </div>
+            </div>
             
             <div class='form-group row'>
             <!-- <label for='name' class='col-sm-2 col-form-label'>작성자</label> -->
@@ -551,6 +557,17 @@
             </div>
             
             
+<div class="input-group">
+  <div class="custom-file">
+      <input type="file" class="form-control-file" id="file1" name="file"
+                        onchange="readURL(this)">
+
+    <label class="custom-file-label" for="file1">Choose file</label>
+  </div>
+  <div class="input-group-append" id="readURL">
+
+  </div>
+</div>   
             
             <div class='form-group row'>
                 <div class='col-sm-10'>
@@ -577,6 +594,15 @@
                         <p style="color:black;">{{conts}}</p>
                     <button id="commentdeleteBtn{{com_no}}" class="btn btn-dark pull-right" type="button">덧글 삭제</button>
                     </div>
+
+<div class="form-group row">
+    {{#if comment_photo}}
+     <img class="commentpic" style= width="100px" height="100px" src="../download/{{comment_photo}}">
+{{else}}
+    <img class="commentpic" style=display="none">
+    {{/if}}
+</div>
+
                 </div>
             
        
@@ -593,6 +619,30 @@
 </script>
 
 
+     <script type="text/javascript">
+
+
+
+
+    function readURL(input) 
+    {
+        if(input.files && input.files[0]) 
+        {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#readURL').html("<img id=comentphoto class=img style=width:200px;height:200px; src=''>");
+
+                $('.img').attr('src', e.target.result);
+
+            }
+        
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    </script>
+    
 
 	<script src='../js/clist.js'></script>
 </body>

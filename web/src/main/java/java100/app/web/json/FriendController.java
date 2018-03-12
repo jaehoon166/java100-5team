@@ -106,7 +106,8 @@ public class FriendController {
             cody_comment.setM_no(loginUser.getM_no());
             cody_comment.setId(loginUser.getId());
             cody_comment.setM_photo(loginUser.getM_photo());
-            
+
+
             result.put("formcomment", cody_comment);
             
             Cody cody = codyService.get(co_noo);
