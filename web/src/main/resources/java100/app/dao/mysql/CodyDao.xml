@@ -52,6 +52,7 @@
         select 
 	     b.co_no, 
 	     b.title,
+	     b.conts,
 	     b.co_photo,
 	     m.m_no, 
 	     m.email 

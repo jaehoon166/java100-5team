@@ -21,7 +21,7 @@ function load2() {
        /* data: options,*/
         dataType: 'json',
         success: (result) => {
-            
+            console.log(result);
             
             mydiv.html(template0Engine(result));
           /*  
@@ -55,7 +55,7 @@ function load2() {
 
 $('#main').load('../header.html', () => {
     
-    load(1);
+    load2();
 });
 
 

@@ -66,7 +66,8 @@
         m.m_photo,
         (select count(m_no2) from friend where m_no2=#{value}) as friend_count,
         sum(b.likedcount),
-        count(b.title)
+        count(b.title),
+        b.conts
         from member as m left outer join cody_board as b
     on m.m_no=b.m_no
     where m.m_no=#{value}
