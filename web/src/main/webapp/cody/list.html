@@ -445,7 +445,7 @@
 
 
 	<!-- Trend Post Template -->
-	<ul id="TrendTemplete">
+	<ul id="TrendTemplete" style="display: none">
 		<li>
 			<div class="images">
 				<a class="js-link" id="" href="" class="tag"> <img
@@ -576,15 +576,21 @@
                 </div>
             </div>
             
+  <div class='form-group row'>
+            <!-- <label for='name' class='col-sm-2 col-form-label'>작성자</label> -->
+            <div class='col-sm-10'>
+                    <h5>작성자</h5><input class='form-control' id='id' type="text" name='id' placeholder="Id" value="{{formcomment.id}}" readonly="readonly">
+                </div>
+            </div>
+            
+             {{/if}}
 
-      <div class='form-group row'>
+ <div class='form-group row'>
                 <label for='name' class='col-sm-1.5 col-form-label'>{{formcomment.id}}</label> 
                 <div class='col-sm-10'>
                    <input class='form-control' id='comment-conts' type='text' name='conts' placeholder="주의! 남을 비방하는 내용은 금지하고 있습니다.">
                 </div>
             </div>
-            
-             {{/if}}
             
           
             
@@ -620,7 +626,8 @@
                    
                   
     <div class='form-group row'>
-                    <label for='title' class='col-sm-2 col-form-label'><img class="user-pic" style="border-radius:100%" width="35px" height="35px" src="../download/{{m_photo}}">
+                    <label for='title' class='col-sm-2 col-form-label'>
+<img class="user-pic" style="border-radius:100%" width="35px" height="35px" src="../download/{{m_photo}}">
                           {{id}}</label>
                     <div class='col-sm-10'>
                         <p style="color:black;">{{conts}}</p>

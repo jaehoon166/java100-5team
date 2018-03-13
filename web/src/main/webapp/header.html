@@ -1,41 +1,14 @@
 <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-      
       <a class="navbar-brand navbar-tit" href="../cody/list.html">FIT PLANET</a>
       
-      <!-- 회원 id menubar-------------------------------------------------- -->
-<!--         <div class="menubar">
-<ul>
- <li><a href="#" id="current">Products</a>
-    <ul>
-     <li><a href="#">Mypage</a></li>
-     <li><a href="#">Galleries</a></li>
-     <li><a href="#">QnA</a></li>
-     <li><a href="#">Logout</a></li>
-    </ul>
- </li>
-</ul>
-</div> -->
-<!-- 회원 id menubar-------------------------------------------------- -->
-      
-<!--       <ul class="navbar-nav px-3">
-      </ul>
-
- 헤더에 회원 프로필 사진      
-<span id="userphoto" style='border-radius: 100%; width:35px; height:35px; margin-right: 5px'></span>
-
- 헤더에 회원 닉네임
-<span id="username" style='color: white; margin-right: 5px'></span>
-
-
- 로그인 버튼 클릭시 모달창 띄우기            
-  <a data-target="#loginmodal" data-toggle="modal"
-            class='btn btn-light btn-sm in' style="vertical-align: middle;" >LOGIN</a>
-
-  로그 아웃 버튼            
-<button id="logoutBtn" type="button"  class='btn btn-light btn-sm out'>Log Out</button>
-</nav>
- -->
-
+  <form class="form-inline">
+    <input id="words" name="words"
+           class="form-control form-control-sm mr-sm-2" type="search" 
+           placeholder="검색" aria-label="Search">
+    <button id="searchBtn" class="btn btn-sm btn-outline-success my-2 my-sm-0" 
+            type="button">Search</button>
+  </form>
+  
 <!--  로그인 모달  -->
 <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -166,6 +139,21 @@ $('#logoutBtn').click(() => {
     });
 })
 
+
+$('#searchBtn').click(() => {
+    alert('실행');
+    //event.preventDefault();
+    if((words.value) == '남자'|| '여자') {
+        load(1, {
+            "words": words.value 
+        })
+
+    } 
+    load(1, {
+        "h_tag": words.value 
+    })
+   
+});
 
 
 </script>

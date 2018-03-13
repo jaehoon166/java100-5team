@@ -20,6 +20,8 @@ var tbody = $('#list > tbody');
 
 var modalh = $('#modalsample > h5');
 
+
+
 // 검색조건 함수 -------------------------------------------------
 function PantsSize(value){
     
@@ -404,22 +406,6 @@ function modalViewFunction(writerNo,contentNo) {
                     dataType: 'json',
                     success: (result) => {
                       
-                        $.ajax('../json/friend/list', {
-                            data: {
-                                codyNo : contentNo,
-                                codyWno : writerNo
-                            },
-                            dataType: 'json',
-                            success: (result) => {
-                             
-                                codyView.html(template3Engine(result));
-                                
-                                $('.bd-example-modal-lg').modal('show');
-                            },
-                            error: () => {
-                                console.log('덧글 실행 오류1!');
-                            }
-                        });
                     },
                     error: () => {
                         console.log('덧글 실행 오류2!');
